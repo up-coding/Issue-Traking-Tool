@@ -9,8 +9,13 @@
     </div>
     <div class="form-group">
       <label for="InputDescription">Description of Issue</label>
-      <textarea type="text" class="form-control" id="description"  placeholder="Enter isse description"></textarea>
- 
+      <ckeditor [(ngModel)]="editedText" name="editor"></ckeditor>
+      
+<!--       <textarea type="text" class="form-control" id="description"  placeholder="Enter isse description"></textarea>
+ --> 
+    </div>
+    <div>
+      {{editedText}}
     </div>
     <div class="form-group">
       <label for="FileInput">Attachments</label>
