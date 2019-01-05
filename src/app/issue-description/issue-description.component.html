@@ -1,0 +1,24 @@
+<div class="container">
+   <br>
+   <br>
+  <form>
+    <div class="form-group">
+      <label for="InputIssueTitle">Issue Title</label>
+      <input type="text" class="form-control" id="issue"   placeholder="Enter isse title">
+      
+    </div>
+    <div class="form-group">
+      <label for="InputDescription">Description of Issue</label>
+      <textarea type="text" class="form-control" id="description"  placeholder="Enter isse description"></textarea>
+ 
+    </div>
+    <div class="form-group">
+      <label for="FileInput">Attachments</label>
+      <input type="file" class="form-control-file" id="fileInput">
+    </div>
+     
+    
+    <button [routerLink]="['/dashboard']" type="submit" class="btn btn-primary">Create Issue</button>
+  </form>
+</div>
+

@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  
+  <!--main row-->
+  <div class="row">
+      <div class="nav-div">
+          <nav class="nav flex-column">
+              <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dashbordNavbar" aria-controls="dashbordNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button> -->
+              <!-- <div class="collapse navbar-collapse" id="dashbordNavbar"> -->
+                  <a class="nav-link active" href="#">Dashboard</a>
+                  <a class="nav-link" href="#">Notification</a>
+                  <a [routerLink]="['/login']" class="nav-link" href="#">Logout</a>
+                   
+              <!-- </div> -->
+              
+            </nav>
+      </div>
+      <div class="col">
+          <br>
+        <!--Second row-->
+        <div class="row">
+            <div class="col-md-10">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button [routerLink]="['/search']" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+            </div>
+            <div>
+                <button [routerLink]="['/issue']" type="button" class="btn btn-primary">Log New Issue</button>
+            </div>
+        </div><!--Second row ends-->
+        <br>
+        <br>
+        <!--Third row-->
+         <div class="row">
+            <div class="col-md-11">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Reporter</th>
+                        <th scope="col">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+      
+         </div><!-- Third row ends-->
+           
+          
+      </div>
+     
+      
+  </div><!--main row ends-->
+  
+  
+  
+</div>

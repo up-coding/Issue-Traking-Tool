@@ -1,0 +1,10 @@
+.nav-div{
+    background-color: darkcyan;
+    width: 100px;
+    height: 100vh;
+    
+}
+
+.nav-div a{
+    color:white;
+}

@@ -1,0 +1,64 @@
+
+<div>
+    <!--Navbar-->
+    <div class="">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Issue Tracking Tool</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+    
+                </ul>
+                <li class="form-inline my-2 my-lg-0">
+    
+                    <button [routerLink]="['/login']" class="btn btn-outline-success my-2 my-sm-0" type="submit">LogIn/SignUp</button>
+                </li>
+            </div>
+        </nav>
+    </div>
+        <!--Login and signup form-->   
+        <div class="container parent-div">
+                <div class="row">
+                     <div class="col-md-6 first-div">
+                           <h3>SignUp</h3>
+                           <form>
+                               <div class="form-group">
+                                   <input type="text" class="form-control" placeholder="firstName" value="">
+                               </div>
+                               <div class="form-group">
+                                   <input type="text" class="form-control" placeholder="lastName" value="">
+                               </div>
+                               <div class="form-group">
+                                   <input type="text" class="form-control" placeholder="your email" value="">
+                               </div>
+                               <div class="form-group">
+                                  <input type="password" class="form-control" placeholder="your password" value="">
+                               </div>
+                               <div class="form-group">
+                                  <input [routerLink]="['/dashboard']" type="submit" class="btnSubmit" value="Create account">
+                               </div>
+                           </form>
+                     </div>
+                     <div class="col-md-6 second-div">
+                         <h3>LogIn</h3>
+                         <form>
+                           <div class="form-group">
+                              <input type="text" class="form-control" placeholder="your email" value="">
+                           </div>
+                           <div class="form-group">
+                               <input type="text" class="form-control" placeholder="your password" value="">
+                           </div>
+                           <div class="form-group">
+                               <input [routerLink]="['/dashboard']" type="submit" class="btnSubmit" value="Login">
+                           </div>
+                         </form>
+                     </div>
+                </div>
+           </div>
+
+</div>
+
