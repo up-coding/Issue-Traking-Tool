@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { PersonalizedDashboardComponent } from './personalized-dashboard/personalized-dashboard.component';
-import { IssueDescriptionComponent } from './issue-description/issue-description.component';
-import { SearchComponent } from './search/search.component';
+import { LoginComponent } from './user/login/login.component';
+import { PersonalizedDashboardComponent } from './dashboard/personalized-dashboard/personalized-dashboard.component';
+import { IssueCreateComponent } from './issue-description/issue-create/issue-create.component';
+import { SearchBoxComponent } from './search/search-box/search-box.component';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
    
   {path:'login',component:LoginComponent},
   {path:'',redirectTo:'login',pathMatch:'full'},
-  {path:'dashboard',component:PersonalizedDashboardComponent},
-  {path:'issue',component:IssueDescriptionComponent},
-  {path:'search',component:SearchComponent}
+ 
+  {path:'issue',component:IssueCreateComponent},
+  {path:'search',component:SearchBoxComponent}
   
 ];
 

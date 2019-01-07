@@ -5,25 +5,27 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SearchComponent } from './search/search.component';
-import { IssueDescriptionComponent } from './issue-description/issue-description.component';
-import { PersonalizedDashboardComponent } from './personalized-dashboard/personalized-dashboard.component';
-import { LoginComponent } from './login/login.component';
+import { IssueDescriptionModule } from './issue-description/issue-description.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { SearchModule } from './search/search.module';
+import { UserModule } from './user/user.module';
+ 
  
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent,
-    IssueDescriptionComponent,
-    PersonalizedDashboardComponent,
-    LoginComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CKEditorModule,
-    FormsModule
+    FormsModule,
+    IssueDescriptionModule,
+    DashboardModule,
+    SearchModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

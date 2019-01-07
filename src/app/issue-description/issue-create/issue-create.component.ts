@@ -3,10 +3,10 @@ import { CKEditorComponent } from 'ng2-ckeditor';
 
 @Component({
   selector: 'app-issue-description',
-  templateUrl: './issue-description.component.html',
-  styleUrls: ['./issue-description.component.css']
+  templateUrl: './issue-create.component.html',
+  styleUrls: ['./issue-create.component.css']
 })
-export class IssueDescriptionComponent implements OnInit {
+export class IssueCreateComponent implements OnInit {
   editedText:string = "<b>edited text</b>";
   @ViewChild(CKEditorComponent) ckEditor: CKEditorComponent;
 
@@ -17,7 +17,8 @@ export class IssueDescriptionComponent implements OnInit {
 
   ngAfterViewChecked(){
     let editor = this.ckEditor.instance;
-    editor.config.height = '400';
+    editor.config.height = '200';
+     
     editor.config.toolbarGroups = [
       {name:'document',groups:['mode','document','doctools']},
       {name:'clipboard',groups:['clipboard','undo']},
