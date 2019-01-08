@@ -23,37 +23,24 @@
         <!--Login and signup form-->   
         <div class="container parent-div">
                 <div class="row">
-                     <div class="col-md-6 first-div">
-                           <h3>SignUp</h3>
-                           <form>
-                               <div class="form-group">
-                                   <input type="text" class="form-control" placeholder="firstName" value="">
-                               </div>
-                               <div class="form-group">
-                                   <input type="text" class="form-control" placeholder="lastName" value="">
-                               </div>
-                               <div class="form-group">
-                                   <input type="text" class="form-control" placeholder="your email" value="">
-                               </div>
-                               <div class="form-group">
-                                  <input type="password" class="form-control" placeholder="your password" value="">
-                               </div>
-                               <div class="form-group">
-                                  <input [routerLink]="['/dashboard']" type="submit" class="btnSubmit" value="Create account">
-                               </div>
-                           </form>
-                     </div>
+                     
                      <div class="col-md-6 second-div">
                          <h3>LogIn</h3>
-                         <form>
+                         <form #logInForm="ngForm">
                            <div class="form-group">
-                              <input type="text" class="form-control" placeholder="your email" value="">
+                              <input type="email" id="inputEmail" [(ngModel)]="email" #emailInput="ngModel" class="form-control" placeholder="your email" name="email" required autofocus>
                            </div>
+                           <p [hidden]="emailInput.valid || emailInput.pristine" class="alert alert-danger">
+                               Enter email!
+                           </p>
                            <div class="form-group">
-                               <input type="text" class="form-control" placeholder="your password" value="">
+                               <input type="password" id="inputPassword" #passwordInput="ngModel" [(ngModel)]="password" class="form-control" placeholder="your password" name="password" required>
                            </div>
+                           <p [hidden]="passwordInput.valid || passwordInput.pristine" class="alert alert-danger">
+                            Enter password!
+                           </p>
                            <div class="form-group">
-                               <input [routerLink]="['/dashboard']" type="submit" class="btnSubmit" value="Login">
+                               <input  type="submit"   (click)="signInFunction()" [disabled]="!logInForm.form.valid" class="btnSubmit" value="Login">
                            </div>
                          </form>
                      </div>
