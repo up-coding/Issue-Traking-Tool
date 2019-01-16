@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { AppService } from './app.service';
 import { FileUploadModule, FileSelectDirective } from 'ng2-file-upload';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
  
  
 
@@ -33,7 +34,7 @@ import { FileUploadModule, FileSelectDirective } from 'ng2-file-upload';
     CKEditorModule,
     FormsModule,
    
-     
+    Ng2SearchPipeModule, 
     ToastrModule.forRoot(),
     IssueDescriptionModule,
     DashboardModule,

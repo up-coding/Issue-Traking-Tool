@@ -142,15 +142,15 @@ export class IssueEditComponent implements OnInit {
 }
 
 public editIssue = ()=>{
-  this.issueService.editAIssue(this.currentIssue.issueId,this.currentIssue).subscribe((data)=>{
-           data=>{
-             console.log(data);
+  this.issueService.editAIssue(this.currentIssue.issueId,this.currentIssue).subscribe((response:any)=>{
+           
+             console.log(response);
              this.toastr.success('Issue edited successfully!');
              setTimeout(()=>{
                this.router.navigate(['/issue-view',this.currentIssue.issueId]);
              },1000);
-           }
-  },(err)=>{
+           
+  },err=>{
       console.log("Some error occured");
       console.log(err.errMessage);
       this.toastr.error('Some error occured');

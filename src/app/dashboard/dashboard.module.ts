@@ -8,6 +8,7 @@ import { SearchBoxComponent } from '../search/search-box/search-box.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { IssueCreateComponent } from '../issue-description/issue-create/issue-create.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PersonalizedDashboardComponent],
@@ -16,6 +17,7 @@ import { IssueCreateComponent } from '../issue-description/issue-create/issue-cr
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     SharedModule,
+    FormsModule,
     RouterModule.forChild([
       {path:'search',component:SearchBoxComponent},
       {path:'issue',component:IssueCreateComponent}

@@ -5,6 +5,8 @@ import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IssueService } from 'src/app/issue.service';
+import { NgForm } from '@angular/forms';
+ 
  
 
 
@@ -29,6 +31,7 @@ export class PersonalizedDashboardComponent implements OnInit {
   public issueList: any;
   public userList = [];
   public disconnectedSocket:boolean;
+  q:string;
 
   constructor(public appSevice:AppService,
     
@@ -38,6 +41,17 @@ export class PersonalizedDashboardComponent implements OnInit {
       console.log('dashboard constructor');
       this.receiverId = Cookie.get('receiverId');
       this.receiverName = Cookie.get('receiverName');
+    }
+
+    submitSearch(){
+        
+        console.log(this.q);
+        let query = this.q;
+        
+        if(query){
+          this.router.navigate(['/search',{q:query}]);
+        }
+        
     }
 
   ngOnInit() {

@@ -145,8 +145,8 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
 
 
 public onSubmit = ()=>{
-   console.log(new Blob([JSON.stringify(Array.from(this.files).slice())],{type:'application/json'}));
-   console.log(JSON.stringify(this.files));
+    
+    
     const formData = new FormData();
     for (var i = 0; i < this.myFiles.length; i++) { 
       formData.append("files", this.myFiles[i]);

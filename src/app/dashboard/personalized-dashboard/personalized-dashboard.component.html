@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
   
   <!--main row-->
   <div class="row">
@@ -11,7 +11,7 @@
             </button>
     
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav">
     
                 </ul>
                 <li class="form-inline my-2 my-lg-0">
@@ -26,9 +26,9 @@
         <!--Second row-->
         <div class="row">
             <div class="col-md-10 form-group">
-                <form class="form-inline my-2  my-lg-0">
-                    <input class="form-control   mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button [routerLink]="['/search']" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form (ngSubmit)="submitSearch()" class="form-inline my-2  my-lg-0">
+                    <input class="form-control mr-sm-2"   [(ngModel)]="q" type="search" placeholder="Search" name="q">
+                    <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
                   </form>
             </div>
             <div>

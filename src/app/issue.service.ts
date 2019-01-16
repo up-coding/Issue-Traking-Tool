@@ -21,8 +21,8 @@ export class IssueService {
     return this.httpClient.post(`${this.url}/issues/createIssue?authToken=${this.authToken}`,data);
   }
 
-  public getAllIssues = (authToken)=>{
-      let variable = this.httpClient.get(`${this.url}/issues/view/all?authToken=${authToken}`);
+  public getAllIssues = ()=>{
+      let variable = this.httpClient.get(`${this.url}/issues/view/all?authToken=${this.authToken}`);
       console.log(variable);
       return variable;
   }
