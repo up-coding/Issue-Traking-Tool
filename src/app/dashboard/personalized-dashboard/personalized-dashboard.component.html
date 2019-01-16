@@ -2,27 +2,32 @@
   
   <!--main row-->
   <div class="row">
-      <div class="nav-div">
-          <nav class="nav flex-column">
-              <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dashbordNavbar" aria-controls="dashbordNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="#">Issue Tracking Tool</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-              </button> -->
-              <!-- <div class="collapse navbar-collapse" id="dashbordNavbar"> -->
-                  <a class="nav-link active" href="#">Dashboard</a>
-                  <a class="nav-link" href="#">Notification</a>
-                  <a [routerLink]="['/login']" class="nav-link" href="#">Logout</a>
-                   
-              <!-- </div> -->
-              
-            </nav>
-      </div>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+    
+                </ul>
+                <li class="form-inline my-2 my-lg-0">
+    
+                     <user-details></user-details>
+                </li>
+            </div>
+        </nav>
+    </div>
       <div class="col">
-          <br>
+          <br><br><br>
         <!--Second row-->
         <div class="row">
-            <div class="col-md-10">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <div class="col-md-10 form-group">
+                <form class="form-inline my-2  my-lg-0">
+                    <input class="form-control   mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button [routerLink]="['/search']" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                   </form>
             </div>
@@ -34,9 +39,9 @@
         <br>
         <!--Third row-->
          <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12"  >
               <!--Angular Datatables -->
-              <table #dataTable class="display" style="width:100%">
+              <table #dataTable class="display"   style="width:100%">
                   <thead>
                       <tr>
                           <th>Status</th>
@@ -48,117 +53,13 @@
                   </thead>
                   <tbody>
                       <tr>
-                          <td>Tiger Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
+                          <td> </td>
+                          <td> </td>
+                          <td> </td>
+                          <td> </td>
                            
                       </tr>
-                      <tr>
-                          <td>Garrett Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                           
-                      </tr>
-                      <tr>
-                          <td>Ashton Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                           
-                      </tr>
-                      <tr>
-                          <td>Cedric Kelly</td>
-                          <td>Senior Javascript Developer</td>
-                          <td>Edinburgh</td>
-                          <td>22</td>
-                           
-                      </tr>
-                      <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                             
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                             
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                             
-                        </tr>
-                        <tr>
-                            <td>Cedric Kelly</td>
-                            <td>Senior Javascript Developer</td>
-                            <td>Edinburgh</td>
-                            <td>22</td>
-                             
-                        </tr>
-                        <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                 
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                 
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                                <td>66</td>
-                                 
-                            </tr>
-                            <tr>
-                                <td>Cedric Kelly</td>
-                                <td>Senior Javascript Developer</td>
-                                <td>Edinburgh</td>
-                                <td>22</td>
-                                 
-                            </tr>
-                            <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                     
-                                </tr>
-                                <tr>
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>63</td>
-                                     
-                                </tr>
-                                <tr>
-                                    <td>Ashton Cox</td>
-                                    <td>Junior Technical Author</td>
-                                    <td>San Francisco</td>
-                                    <td>66</td>
-                                     
-                                </tr>
-                                <tr>
-                                    <td>Cedric Kelly</td>
-                                    <td>Senior Javascript Developer</td>
-                                    <td>Edinburgh</td>
-                                    <td>22</td>
-                                     
-                                </tr>
+                       
                    
                   </tbody>
                   

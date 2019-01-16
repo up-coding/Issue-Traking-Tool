@@ -1,46 +1,38 @@
-import { Component, OnInit,ViewChild, EventEmitter, OnDestroy } from '@angular/core';
-import { CKEditorComponent } from 'ng2-ckeditor';
-import { Location } from '@angular/common'; 
-import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
 import { Cookie } from 'ng2-cookies';
+import { CKEditorComponent } from 'ng2-ckeditor';
+import { FormGroup } from '@angular/forms';
 import { IssueService } from 'src/app/issue.service';
 import { AppService } from 'src/app/app.service';
-import { FormBuilder,FormGroup} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
- 
 
- 
- 
- 
 
- 
 @Component({
-  selector: 'app-issue-description',
-  templateUrl: './issue-create.component.html',
-  styleUrls: ['./issue-create.component.css'],
+  selector: 'app-issue-edit',
+  templateUrl: './issue-edit.component.html',
+  styleUrls: ['./issue-edit.component.css'],
   providers:[Location]
 })
+export class IssueEditComponent implements OnInit {
 
-export class IssueCreateComponent implements OnInit,OnDestroy {
-  
+   
    
    
   @ViewChild(CKEditorComponent) ckEditor: CKEditorComponent;
  
-  issueForm:FormGroup;
-
-  public title:string;
-  public description:any;
+  
+  
+  public currentIssue:any=<any>{};
+  
   public files:[] ;
-  public reporterId:string;
-  public reporterName:string;
   public assigneeName:[];
   public assigneeId:string;
   public allAssignee = [];
   public authToken:any;
   public status = ['In-backlog','In-Progress','In-Test','Done'];
   public userStatus:any;
-  public currentIssue;
   
   
   
@@ -48,32 +40,40 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
   constructor(public issueService:IssueService,
     public appService:AppService,
     private toastr:ToastrService,
-    private _route:ActivatedRoute,
-    public router:Router 
+    public router:Router,
+    private location:Location,
+    private _route:ActivatedRoute 
     ) { 
-    console.log('inside create issue constructor');
+    console.log('inside edit issue constructor');
      
 
   }
   
   ngOnInit() {
     this.authToken = Cookie.get('authToken');
-    this.reporterId = Cookie.get('receiverId');
-    this.reporterName = Cookie.get('receiverName');
-    console.log("user id" + this.reporterId);
-    console.log("user id" + this.reporterName);
     this.getAllUsersName(this.authToken);
 
+    let myIssueId = this._route.snapshot.paramMap.get('issueId');
+    console.log(myIssueId);
+    this.issueService.getSingleIssue(myIssueId).subscribe((response:any)=>{
+      console.log(response);
+      this.currentIssue = response['data'];
+      console.log('current issue is'+Object.keys(this.currentIssue));
+    }
+            
+    ,err=>{
+        console.log('some error occured');
+        console.log(err.errMessage);
+    });
+    
      
   }
 
-  ngOnDestroy(): void {
-    if (this.ckEditor.instance.editor) this.ckEditor.instance.editor.destroy();
-    console.log('issue-create ondestroy called');
-  }
+  
   
   ngAfterViewChecked(){
     let editor = this.ckEditor.instance;
+    
     editor.config.height = '200';
      
     editor.config.toolbarGroups = [
@@ -87,6 +87,11 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
       { name: 'colors', groups: [ 'colors' ] }
     ]; 
     editor.config.removeButtons = `Anchor,Save,Find,Replace,Scayt,SelectAll,Form,Radio`;
+  }
+
+  ngOnDestroy(): void {
+    if (this.ckEditor.instance.editor) this.ckEditor.instance.editor.destroy();
+    console.log('issue-create ondestroy called');
   }
 
   statusSelected(issueStatus){
@@ -135,56 +140,27 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
    
     
 }
-  
 
-  
-
-  
-
-
-
-
-public onSubmit = ()=>{
-   console.log(new Blob([JSON.stringify(Array.from(this.files).slice())],{type:'application/json'}));
-   console.log(JSON.stringify(this.files));
-    const formData = new FormData();
-    for (var i = 0; i < this.myFiles.length; i++) { 
-      formData.append("files", this.myFiles[i]);
-    }
-    formData.append('title',this.title);
-    formData.append('description',this.description);
-    formData.append('status',this.userStatus);
-    formData.append('reporterId',this.reporterId);
-    formData.append('assigneeId',this.assigneeId);
-    formData.append('reporterName',this.reporterName);
-    formData.append('assigneeName',JSON.stringify(this.assigneeName));
-      
-     
-    this.issueService.createAIssue(formData).subscribe((apiResponse)=>{
-      console.log(apiResponse);
-      if(apiResponse.status === 200){
-         this.toastr.success('Issue created successfully!');
-         setTimeout(()=>{  
-           console.log(apiResponse.data.issueId);
-          this.router.navigate(['/issue-view',apiResponse.data.issueId]);
-        }, 1000)
-          
-      }else{
-        this.toastr.error('Something wrong!');
-      }
-
-    },(err)=>{
-       this.toastr.error('error occured');
-    }); 
-
-
-     
-    
-
-
-
-
-
- } 
+public editIssue = ()=>{
+  this.issueService.editAIssue(this.currentIssue.issueId,this.currentIssue).subscribe((data)=>{
+           data=>{
+             console.log(data);
+             this.toastr.success('Issue edited successfully!');
+             setTimeout(()=>{
+               this.router.navigate(['/issue-view',this.currentIssue.issueId]);
+             },1000);
+           }
+  },(err)=>{
+      console.log("Some error occured");
+      console.log(err.errMessage);
+      this.toastr.error('Some error occured');
+  });
 }
 
+public goBackToPreviousPage(): any {
+
+  this.location.back();
+
+}
+
+}

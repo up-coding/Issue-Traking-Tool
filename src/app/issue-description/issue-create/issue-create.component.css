@@ -21,4 +21,15 @@
     color:white;
 }
 
+.footer {
+    margin-top: 5px;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #7FDBFF;
+    color: white;
+    text-align: center;
+ }
+
  

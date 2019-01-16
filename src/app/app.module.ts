@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewChild } from '@angular/core';
 import { CKEditorModule } from 'ng2-ckeditor';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,28 +12,36 @@ import { SearchModule } from './search/search.module';
 import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { AppService } from './app.service';
+import { FileUploadModule, FileSelectDirective } from 'ng2-file-upload';
  
  
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+     
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     CKEditorModule,
     FormsModule,
+   
+     
     ToastrModule.forRoot(),
     IssueDescriptionModule,
     DashboardModule,
     SearchModule,
     UserModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }

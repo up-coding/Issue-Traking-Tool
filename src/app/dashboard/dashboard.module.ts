@@ -2,14 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PersonalizedDashboardComponent } from './personalized-dashboard/personalized-dashboard.component';
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from '../user/login/login.component';
+ 
+import { SharedModule } from '../shared/shared.module';
+import { SearchBoxComponent } from '../search/search-box/search-box.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { IssueCreateComponent } from '../issue-description/issue-create/issue-create.component';
 
 @NgModule({
   declarations: [PersonalizedDashboardComponent],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    SharedModule,
     RouterModule.forChild([
-      {path:'login',component:LoginComponent},
+      {path:'search',component:SearchBoxComponent},
+      {path:'issue',component:IssueCreateComponent}
     ])
   ]
 })

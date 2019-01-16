@@ -8,6 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { PersonalizedDashboardComponent } from '../dashboard/personalized-dashboard/personalized-dashboard.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -21,8 +22,7 @@ import { PersonalizedDashboardComponent } from '../dashboard/personalized-dashbo
     FormsModule,
     ToastrModule.forRoot(),
     RouterModule.forChild([
-      {path:'signup',component:SignupComponent},
-      {path:'dashboard',component:PersonalizedDashboardComponent},
+      {path:'signup',component:SignupComponent}
     ])
   ]
 })

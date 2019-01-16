@@ -17,10 +17,12 @@ export class LoginComponent implements OnInit {
   constructor(private toastr:ToastrService,
     public appService:AppService,
     public router:Router,
-    ) { }
+    ) { console.log('login constructor')}
 
   ngOnInit() {
   }
+
+  
 
   public goToSignUp:any = ()=>{
      this.router.navigate(['/signup']);

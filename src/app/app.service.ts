@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError,map } from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
+ 
 
 
 
@@ -18,7 +19,13 @@ export class AppService {
     return JSON.parse(localStorage.getItem('userInfo'));
   }
 
+  public getUrl = ()=>{
+    console.log(this.url);
+    return this.url;
+  }
+
   public setUserInfoToLocalStorage = (data) =>{
+    console.log(data);
     localStorage.setItem('useInfo',JSON.stringify(data));
   }
 
@@ -37,6 +44,15 @@ export class AppService {
       .set('email',data.email)
       .set('password',data.password);
       return this.httpClient.post(`${this.url}/users/login`,params);
+  }
+
+  public getAllUsers = (data)=>{
+     return this.httpClient.get(`${this.url}/users/view/all?authToken=${data}`);
+  }
+  public getSingleUser = (data):Observable<any>=>{
+     const params = new HttpParams()
+     .set('userId',data.userId);
+     return this.httpClient.get(`${this.url}/users/${params}/details`); 
   }
 
   private handleError = (err:HttpErrorResponse)=>{
