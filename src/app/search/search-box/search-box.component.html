@@ -34,7 +34,8 @@
             </thead>
             <tbody *ngFor='let issue of allIssueDetails | filter:query'>
                 <tr>
-                    <td>{{issue.status}} </td>
+                    <a [routerLink]="['/issue-view',issue.issueId]">
+                    <td>{{issue.status}} </td></a>
                     <td>{{issue.title}} </td>
                     <td> {{issue.reporterName}}</td>
                     <td> {{issue.createdOn | date}}</td>

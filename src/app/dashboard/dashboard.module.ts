@@ -20,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     RouterModule.forChild([
       {path:'search',component:SearchBoxComponent},
-      {path:'issue',component:IssueCreateComponent}
+      {path:'issue',component:IssueCreateComponent},
+      {path:'issue-view/:issueId',component:IssueCreateComponent}
     ])
   ]
 })

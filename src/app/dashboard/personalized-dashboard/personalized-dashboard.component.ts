@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IssueService } from 'src/app/issue.service';
 import { NgForm } from '@angular/forms';
+import { SocketService } from 'src/app/socket.service';
+ 
  
  
 
@@ -28,13 +30,18 @@ export class PersonalizedDashboardComponent implements OnInit {
   public userInfo:any;
   public receiverId:any;
   public receiverName:any;
-  public issueList: any;
-  public userList = [];
+  public allAssignedIssue: any;
+   
+  public list=[];
   public disconnectedSocket:boolean;
   q:string;
+  res: any;
+  allIssueDetails:any;
+  assigneeId:any;
+  newList: any[];
 
   constructor(public appSevice:AppService,
-    
+    public socketService:SocketService,
     public issueService:IssueService,
     public router:Router,
     private toastr:ToastrService) { 
@@ -54,6 +61,11 @@ export class PersonalizedDashboardComponent implements OnInit {
         
     }
 
+    getIssue(issueId){
+      console.log(issueId);
+     // this.router.navigate([`/issue-view`,newList.issueId]);
+    }
+
   ngOnInit() {
     this.dtOptions = {
         "paging":   true,
@@ -71,32 +83,43 @@ export class PersonalizedDashboardComponent implements OnInit {
     this.userInfo = this.appSevice.getUserInfoFromLocalStorage();
     console.log(this.userInfo);
     //this.checkStatus();
-    //this.verifyUserConfirmation();
+    this.verifyUserConfirmation();
     console.log('inside dashboard oninit');
-    this.getAllIssue();
-   //this.getOnlineUserList();
+    
+    
+     this.getAllIssues();
     //this.getUserInfo();
   }
 
 
-   public getAllIssue = ()=>{
-        return this.issueService.getAllIssues(this.authToken).subscribe((apiResponse)=>{
-            console.log('inside dashbord getAllIssue');
-            console.log(apiResponse);
-             
-             
-        },
-        (err)=>{
-             console.log(err);
-        });
-   }
+  public getAllIssues = ()=>{
+      
+    this.issueService.getAllIssues().subscribe(response=>{
+      console.log(response);
+      this.allIssueDetails = response.data;
+       
+       for(let x in this.allIssueDetails){
+          this.assigneeId = this.allIssueDetails[x].assigneeId;
+          if(this.receiverId === this.assigneeId){
+             if(this.allIssueDetails[x].length < 0){
+                 continue;
+             }else{
+               this.list[x]=this.allIssueDetails[x];
+             }
+          }
+       } 
+       this.newList = this.list.filter(value => Object.keys(value).length !== 0)
+       console.log(this.newList);
+     
+      
+    },err=> {console.log(err)});
+      
+    
+ }
 
-   /* public getAssignedIssueForUser = (receiverId)=>{
-     this.socketService.getIssueById(receiverId).subscribe((data)=>{
-           this.issueList = data;
-           return this.issueList;
-     });
-   } */
+  
+
+    
 
    /* public getUserInfo = () => {
        this.authToken = Cookie.get('authToken');
@@ -115,24 +138,25 @@ export class PersonalizedDashboardComponent implements OnInit {
 
    }
 
-   /* public verifyUserConfirmation:any = ()=>{
+   public verifyUserConfirmation:any = ()=>{
        this.socketService.verifyUser().subscribe((data)=>{
           this.disconnectedSocket = false;
           this.socketService.setUser(this.authToken);
+          console.log("inside verify user");
           //this.getOnlineUserList();
        });
-   } */
+   } 
 
-  /*  public getOnlineUserList:any = () =>{
-      this.socketService.onlineUserList().subscribe((userList)=>{
-         this.userList = [];
-         for(let x in userList){
-           let temp = {'userId':x,'name':userList[x],'unread':0,'chatting':false};
-           this.userList.push(temp);
-
-         }
-         console.log(this.userList);
-      });
-   } */
+  public getAllAssignedIssueList:any = () =>{
+         
+       
+       
+          
+        
+         
+         
+          
+     
+   } 
 
 }

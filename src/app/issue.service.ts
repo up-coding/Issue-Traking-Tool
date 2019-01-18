@@ -21,7 +21,7 @@ export class IssueService {
     return this.httpClient.post(`${this.url}/issues/createIssue?authToken=${this.authToken}`,data);
   }
 
-  public getAllIssues = ()=>{
+  public getAllIssues = () :Observable<any>=>{
       let variable = this.httpClient.get(`${this.url}/issues/view/all?authToken=${this.authToken}`);
       console.log(variable);
       return variable;
@@ -40,4 +40,6 @@ export class IssueService {
      let data = {};
      return this.httpClient.post(`${this.url}/issues/${issueId}/delete`,data);
   }
+
+ 
 }

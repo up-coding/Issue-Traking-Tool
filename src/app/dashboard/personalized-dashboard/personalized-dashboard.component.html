@@ -51,15 +51,16 @@
                            
                       </tr>
                   </thead>
-                  <tbody>
+                  <tbody *ngFor="let issue of newList">
                       <tr>
-                          <td> </td>
-                          <td> </td>
-                          <td> </td>
-                          <td> </td>
+                        <a [routerLink]="['/issue-view',issue.issueId]"  >
+                        <td>{{issue?.status}} </td></a>
+                          <td>{{issue?.description}} </td>
+                          <td> {{issue?.reporterName}}</td>
+                          <td> {{issue?.createdOn | date}}</td>
                            
                       </tr>
-                       
+                    
                    
                   </tbody>
                   

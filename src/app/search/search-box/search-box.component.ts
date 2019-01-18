@@ -37,14 +37,18 @@ export class SearchBoxComponent implements OnInit,OnDestroy {
     console.log(params);
     this.query = params['q'];
   });
+  console.log(this.allIssueDetails);
   this.getAllIssues();
+  
   }
 
   ngOnDestroy(){
+    
     this.routeSub.unsubscribe();
   }
 
   public getAllIssues = ()=>{
+   
      this.issueService.getAllIssues().subscribe(response=>{
           console.log(response);
           this.allIssueDetails = response['data'];
