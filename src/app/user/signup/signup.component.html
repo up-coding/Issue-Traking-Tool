@@ -1,69 +1,104 @@
-<div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">Issue Tracking Tool</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<body>
+    <div id="wrapper">
+        <div id="main">
+            <div>
+                <!--Navbar-->
+                <nav class="navbar navbar-expand-lg navbar-light ">
+                    <a class="logo" href="#">
+                        <h4>Issue Tracking Tool</h4>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+                    </button>
 
-            </ul>
-            <li class="form-inline my-2 my-lg-0">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="form-inline my-2 my-lg-0">
 
-                <button [routerLink]="['/login']" class="btn btn-outline-success my-2 my-sm-0" type="submit">LogIn/SignUp</button>
-            </li>
-        </div>
-    </nav>
-    <div class="container parent-div">
-        <br><br><br><br>
-        <div class="row">
-            <div class="col-md-6 second-div">
-                <h3>SignUp</h3>
-                <form #signUpForm="ngForm"  >
-                    <div class="form-group">
-                        <input type="text" id="inputFirstName" class="form-control" #first="ngModel" [(ngModel)]="firstName" placeholder="firstName"
-                            name="first" required autofocus>
+                                <button [routerLink]="['/login']" class="btn btn-success ml-auto nav-btn" type="submit">LogIn</button>
+                            </li>
+                        </ul>
+
                     </div>
-                    <p [hidden]="first.valid || first.pristine" class="alert alert-danger">
-                        Enter first name!
-                    </p>
-                    <div class="form-group">
-                        <input type="text" id="lastName" class="form-control" #last="ngModel" [(ngModel)]="lastName" placeholder="lastName"
-                            name="last" required>
+                </nav>
+                <!--SignUp form div-->
+                <div class="signup-div">
+                    <div class="col-md-6 col-sm-8 col-xl-6 col-lg-6 col-10 first-div">
+                        <h3>SignUp</h3>
+                        <form #signUpForm="ngForm">
+                            <div class="form-group">
+                                <input type="text" id="inputFirstName" class="form-control" #first="ngModel"
+                                    [(ngModel)]="firstName" placeholder="Enter your firstname..." name="first" required
+                                    autofocus>
+                                <span [hidden]="first.valid || first.pristine " class="box-alert">
+                                    First name is required!
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" id="lastName" class="form-control" #last="ngModel" [(ngModel)]="lastName"
+                                    placeholder="Enter your lastname..." name="last" required>
+                                <span [hidden]="last.valid || last.pristine" class="box-alert">
+                                    Last name is required!
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" id="inputEmail" class="form-control" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                                    #inputEmail="ngModel" [(ngModel)]="email" placeholder="Enter your email..." name="email"
+                                    required>
+                                <span *ngIf="inputEmail.errors?.required && inputEmail.touched" class="box-alert">
+                                    Email is required!
+                                </span>
+                                <span *ngIf="inputEmail.errors?.pattern && inputEmail.touched" class="box-alert">
+                                    Email is invalid!
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" id="inputMobileNumber" #mobile="ngModel" pattern="^[0][7-9]\d{9}$|^[7-9]\d{9}$"
+                                    class="form-control" [(ngModel)]="mobileNumber" placeholder="Enter your mobile number..."
+                                    name="mobile" required>
+                                <span *ngIf="mobile.errors?.required && mobile.touched" class="box-alert">
+                                    Mobile number is required!
+                                </span>
+                                <span *ngIf="mobile.errors?.pattern && mobile.touched" class="box-alert">
+                                    Mobile number is invalid!
+                                </span>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <input type="password" id="inputPassword" #inputPassword="ngModel" pattern="^.{8,15}$"
+                                    class="form-control" [(ngModel)]="password" placeholder="Enter your password..."
+                                    name="password" required>
+                                <span *ngIf="inputPassword.errors?.required && inputPassword.touched" class="box-alert">
+                                    Password required!
+                                </span>
+                                <span *ngIf="inputPassword.errors?.pattern && inputPassword.touched" class="box-alert">
+                                    Password must between 8 to 15 character long!
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="button" (click)="signUpFunction()" [disabled]="!signUpForm.form.valid"
+                                    class="btnSubmit" name="signup" value="SignUp">
+                            </div>
+                        </form>
                     </div>
-                    <p [hidden]="last.valid || last.pristine" class="alert alert-danger">
-                        Enter last name!
-                    </p>
-                    <div class="form-group">
-                        <input type="email" id="inputEmail" class="form-control" #inputEmail="ngModel" [(ngModel)]="email" placeholder="your email"
-                            name="email" required>
-                    </div>
-                    <p [hidden]="inputEmail.valid || inputEmail.pristine" class="alert alert-danger">
-                        Enter email!
-                    </p>
-                    <div class="form-group">
-                        <input type="number" id="inputMobileNumber" #mobile="ngModel" class="form-control" [(ngModel)]="mobileNumber"
-                            placeholder="your mobile number" name="mobile" required>
-                    </div>
-                    <p [hidden]="mobile.valid || mobile.pristine" class="alert alert-danger">
-                        Enter moble number!
-                    </p>
-                    <div class="form-group">
-                        <input type="password" id="inputPassword" #inputPassword="ngModel" class="form-control" [(ngModel)]="password"
-                            placeholder="your password" name="password" required>
-                    </div>
-                    <p [hidden]="inputPassword.valid || inputPassword.pristine" class="alert alert-danger">
-                        Enter password!
-                    </p>
-                    <div class="form-group">
-                        <input type="button"  (click)="signUpFunction()" class="btnSubmit" name="signup" value="Create account">
-                    </div>
-                </form>
+
+
+                </div>
+                <!--SignUp form div ends-->
+
             </div>
-
         </div>
-
     </div>
-</div>
+
+    <footer>
+        <h5>@Issue Traking Tool</h5>
+    </footer>
+</body>

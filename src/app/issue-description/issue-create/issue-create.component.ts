@@ -41,36 +41,24 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
   public status = ['In-backlog','In-Progress','In-Test','Done'];
   public userStatus:any;
   public currentIssue;
-  
-  
-  
+  private myFiles:string [] = [];
   
   constructor(public issueService:IssueService,
     public appService:AppService,
     private toastr:ToastrService,
     private _route:ActivatedRoute,
-    public router:Router 
-    ) { 
-    console.log('inside create issue constructor');
-     
-
-  }
+    public router:Router,
+    private location:Location 
+    ) {}
   
   ngOnInit() {
     this.authToken = Cookie.get('authToken');
     this.reporterId = Cookie.get('receiverId');
     this.reporterName = Cookie.get('receiverName');
-    console.log("user id" + this.reporterId);
-    console.log("user id" + this.reporterName);
     this.getAllUsersName(this.authToken);
-
-     
   }
 
-  ngOnDestroy(): void {
-    if (this.ckEditor.instance.editor) this.ckEditor.instance.editor.destroy();
-    console.log('issue-create ondestroy called');
-  }
+  
   
   ngAfterViewChecked(){
     let editor = this.ckEditor.instance;
@@ -89,17 +77,13 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
     editor.config.removeButtons = `Anchor,Save,Find,Replace,Scayt,SelectAll,Form,Radio`;
   }
 
-  statusSelected(issueStatus){
-    console.log(issueStatus);
+  public selectStatus(issueStatus){
     this.userStatus = issueStatus
     return this.userStatus;
  }
 
-  userSelected(id,name){
-      
-     console.log(id);
-     console.log(name);
-     this.assigneeId = id;
+  public selectUser(id,name){
+      this.assigneeId = id;
      this.assigneeName = name;
      return this.assigneeId && this.assigneeName;
   }
@@ -120,33 +104,27 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
 
 
 
-  myFiles:string [] = []
+  
   public onSelected(event) {
-    console.log(event.currentTarget.files);
     if(event.currentTarget.files.length > 0){
         const selectedFiles = event.currentTarget.files;
         this.files = selectedFiles;
         for (var i = 0; i < event.target.files.length; i++) { 
           this.myFiles.push(event.target.files[i]);
         }
-        console.log(this.myFiles);
-         
     }
-   
-    
-}
+  }
   
-
-  
-
-  
-
-
-
-
 public onSubmit = ()=>{
-    
-    
+    if(!this.title){
+      this.toastr.warning('Title required!');
+    }else if(!this.description){
+      this.toastr.warning('Description required!');
+    }else if(!this.assigneeName){
+      this.toastr.warning('Select assignee!');
+    }else if(!this.status){
+      this.toastr.warning('Select status!');
+    }
     const formData = new FormData();
     for (var i = 0; i < this.myFiles.length; i++) { 
       formData.append("files", this.myFiles[i]);
@@ -158,33 +136,25 @@ public onSubmit = ()=>{
     formData.append('assigneeId',this.assigneeId);
     formData.append('reporterName',this.reporterName);
     formData.append('assigneeName',JSON.stringify(this.assigneeName));
-      
-     
     this.issueService.createAIssue(formData).subscribe((apiResponse)=>{
-      console.log(apiResponse);
-      if(apiResponse.status === 200){
-         this.toastr.success('Issue created successfully!');
+    if(apiResponse.status === 200){
+         this.toastr.success('Issue created successfully!','Success!');
          setTimeout(()=>{  
-           console.log(apiResponse.data.issueId);
-          this.router.navigate(['/issue-view',apiResponse.data.issueId]);
+            this.router.navigate(['/issue-view',apiResponse.data.issueId]);
         }, 1000)
-          
-      }else{
-        this.toastr.error('Something wrong!');
-      }
-
+    }else{this.toastr.error(apiResponse.message,'Error');}
     },(err)=>{
-       this.toastr.error('error occured');
+       this.toastr.error('Something wrong happened!','Error');
     }); 
+} 
 
+ public goBack = ()=>{
+   this.location.back();
+ }
 
-     
-    
-
-
-
-
-
- } 
+ ngOnDestroy(): void {
+  if (this.ckEditor.instance.editor) this.ckEditor.instance.editor.destroy();
+   
+}
 }
 

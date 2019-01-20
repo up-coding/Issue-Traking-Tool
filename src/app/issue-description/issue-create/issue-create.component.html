@@ -1,94 +1,115 @@
-<div class="container">
-  <div class="">
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
-      <a class="navbar-brand" href="#">Issue Tracking Tool</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<body>
+  <div id="wrapper">
+    <div id="main">
+      <div>
+        <div class="">
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="logo" href="#">
+              <h3>Issue Tracking Tool</h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-        </ul>
-        <li class="form-inline my-2 my-lg-0">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="form-inline my-2 my-lg-0">
+                  <user-details></user-details>
+                </li>
+              </ul>
 
-          <button [routerLink]="['/login']" class="btn btn-outline-success my-2 my-sm-0" type="submit">LogIn/SignUp</button>
-        </li>
-      </div>
-    </nav>
-  </div>
-  <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-
-      <br>
-      <br><br>
-      <form   >
-        <h2 style="text-align:center;">Create a new Issue</h2>
-        <div class="form-group">
-          <label for="InputIssueTitle">Issue Title</label>
-          <input type="text" id='inputTitle'   [(ngModel)]="title"   name="title"  class="form-control"   placeholder="Enter isse title"
-           required autofocus>
-
+            </div>
+          </nav>
         </div>
-        
-        <div class="form-group">
-          <label for="InputDescription">Description of Issue</label>
-          <ckeditor id="inputDescription"  [config]="{extraPlugins: 'divarea'}" [(ngModel)]="description"    name="description"    placeholder="Enter description"
-            required></ckeditor>
-        </div>
-        <div>
-          {{description}}
-        </div>
+        <!--Create Issue div-->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 form-div">
 
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Assignee</label>
-          <select   (change)="userSelected(assignee.userId,assignee.name)"  
-            id="assigneeId" [(ngModel)]="assignee"  name="assignee"   class="form-control" required>
-            <option *ngFor="let assignee of allAssignee" [ngValue]="assignee">{{assignee.name}}</option>
+              <!--Create Issue Form -->
+              <form #createIssueForm="ngForm">
+                <h2 style="text-align:center;">Create a new Issue</h2>
+                <div class="form-group">
+                  <label for="InputIssueTitle">Issue Title</label>
+                  <input type="text" id='inputTitle' [(ngModel)]="title" #inputTitle="ngModel" name="title" class="form-control"
+                    placeholder="Enter isse title" required autofocus>
+                  <span [hidden]="inputTitle.valid || inputTitle.pristine " class="box-alert">
+                    Title is required!
+                  </span>
 
-          </select>
-        </div>
-        
+                </div>
 
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Status</label>
-          <select   (change)="statusSelected(currentStatus)"   name="status"  id="inputStatus"
-           [(ngModel)]="currentStatus" class="form-control" required>
-            <option *ngFor="let currentStatus of status" [ngValue]="currentStatus">{{currentStatus}}</option>
-
-          </select>
-        </div>
+                <div class="form-group">
+                  <label for="InputDescription">Description of Issue</label>
+                  <ckeditor id="inputDescription" [config]="{extraPlugins: 'divarea'}" [(ngModel)]="description" #desc="ngModel"
+                    name="description" placeholder="Enter description" required></ckeditor>
+                  <span [hidden]="desc.valid || desc.pristine " class="box-alert">
+                    Description is required!
+                  </span>
+                </div>
 
 
-        <div class="form-group">
-          <label for="FileInput">Attachments</label>
-          <div>
-            <input type="file" (change)="onSelected($event)" name="files" multiple>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Assignee</label>
+                  <select (change)="selectUser(assignee.userId,assignee.name)" id="assigneeId" [(ngModel)]="assignee"
+                    #assig="ngModel" name="assignee" class="form-control" required>
+                    <option *ngFor="let assignee of allAssignee" [ngValue]="assignee">{{assignee.name}}</option>
+
+                  </select>
+                  <span [hidden]="assig.valid || assig.pristine " class="box-alert">
+                    Select assignee!
+                  </span>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Status</label>
+                  <select (change)="selectStatus(currentStatus)" name="status" id="inputStatus" [(ngModel)]="currentStatus"
+                    #inputStatus="ngModel" class="form-control" required>
+                    <option *ngFor="let currentStatus of status" [ngValue]="currentStatus">{{currentStatus}}</option>
+
+                  </select>
+                  <span [hidden]="inputStatus.valid || inputStatus.pristine " class="box-alert">
+                    Select status!
+                  </span>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="FileInput">Attachments</label>
+                  <div>
+                    <input type="file" (change)="onSelected($event)" name="files" multiple>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <button (click)="onSubmit()" [disabled]="!createIssueForm.form.valid" type="submit" class="btn btn-primary">Create
+                    Issue</button>
+                </div>
+                <div class="form-group">
+                  <button (click)="goBack()" type="submit" class="btn btn-secondary">Back</button>
+
+                </div>
+
+
+              </form>
+              <!--Create Issue Form -->
+            </div>
+
+
           </div>
-
-
-
         </div>
+        <!--Create issue div ends-->
 
 
-        <div class="row" style="margin-left: 70%">
-          <button [routerLink]="['/dashboard']" type="submit" class="btn btn-primary">Cancel</button>
-          <button style="margin-left: 10%" (click)="onSubmit()" type="submit" class="btn btn-primary">Create Issue</button>
-
-
-        </div>
-
-      </form>
+      </div>
     </div>
-
-
   </div>
 
-
-
-
-
-
-</div>
+  <footer>
+    <h5>@Issue Traking Tool</h5>
+  </footer>
+</body>

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IssueService } from 'src/app/issue.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 declare var $: any;
@@ -11,14 +12,13 @@ declare var $: any;
 })
 export class SearchBoxComponent implements OnInit,OnDestroy {
   @ViewChild('dataTable') table: { nativeElement: any; };
-  dataTable:any;
-  dtOptions:any;
+  private dataTable:any;
+  private dtOptions:any;
   private routeSub:any;
-  query:string;
-  allIssueDetails:[];
+  private query:string;
+  private allIssueDetails:[];
 
-  constructor(private _route:ActivatedRoute,
-    public issueService:IssueService) { }
+  constructor(private _route:ActivatedRoute,public issueService:IssueService,private toastr:ToastrService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -32,29 +32,23 @@ export class SearchBoxComponent implements OnInit,OnDestroy {
   };
   this.dataTable = $(this.table.nativeElement);
   this.dataTable.dataTable(this.dtOptions);
-
   this.routeSub = this._route.params.subscribe(params=>{
-    console.log(params);
     this.query = params['q'];
   });
-  console.log(this.allIssueDetails);
   this.getAllIssues();
-  
   }
 
   ngOnDestroy(){
-    
     this.routeSub.unsubscribe();
   }
 
   public getAllIssues = ()=>{
-   
      this.issueService.getAllIssues().subscribe(response=>{
-          console.log(response);
+          
           this.allIssueDetails = response['data'];
-          console.log(this.allIssueDetails);
+           
      },err=>{
-          console.log(err.message);
+           this.toastr.error('some error occured');
      });
   }
 

@@ -49,7 +49,7 @@ export class IssueViewComponent implements OnInit {
 
 
     )
-    this.getPreviousComments();
+   // this.getPreviousComments();
   }
 
   public sendCommentUsingKeypress: any = (event: any) => {
@@ -87,7 +87,7 @@ export class IssueViewComponent implements OnInit {
   }  
 
 
-  public getPreviousComments :any = ()=>{
+ /* public getPreviousComments :any = ()=>{
      
     
     this.socketService.getComments(this.issueId)
@@ -109,7 +109,7 @@ export class IssueViewComponent implements OnInit {
 
     });
 
-  }// end get previous chat with any user
+  } */
   public goBackToPreviousPage(): any {
 
     this.location.back();

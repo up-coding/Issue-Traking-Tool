@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppService } from './app.service';
 import { FileUploadModule, FileSelectDirective } from 'ng2-file-upload';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AuthGuard } from './auth.guard';
  
  
 
@@ -27,13 +28,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     CKEditorModule,
     FormsModule,
-   
     Ng2SearchPipeModule, 
     ToastrModule.forRoot(),
     IssueDescriptionModule,
@@ -41,7 +40,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     SearchModule,
     UserModule
   ],
-  providers: [AppService],
+  providers: [AppService,AuthGuard],
   bootstrap: [AppComponent]
   
 })

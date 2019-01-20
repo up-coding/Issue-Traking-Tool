@@ -1,102 +1,120 @@
-<div class="container">
-  <div class="">
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
-      <a class="navbar-brand" href="#">Issue Tracking Tool</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<body>
+    <div id="wrapper">
+        <div id="main">
+            <div>
+                <!--navbar-->
+                <div class="">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="logo" href="#">
+                            <h3>Issue Tracking Tool</h3>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="form-inline my-2 my-lg-0">
+                                    <user-details></user-details>
+                                </li>
+                            </ul>
 
-        </ul>
-        <li class="form-inline my-2 my-lg-0">
+                        </div>
+                    </nav>
+                </div>
+                <!--navbar ends-->
+                <div class="container">
+                    <div>
+                        <div class="row" *ngIf="currentIssue">
+                            <div class="col-md-10 ">
+                                <br><br>
+                                <h2>{{currentIssue.title}}</h2>
+                                <hr>
+                                <h5>Current Status:{{currentIssue.status}}</h5>
+                                <hr>
+                                <p>Reported by {{currentIssue.reporterName}} on {{currentIssue.createdOn | date}}</p>
+                                <hr>
+                                <div id="desc" [innerHtml]="currentIssue.description">
+                                    Description
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <button type="button btn-block" class="btn btn-info btn-watch">Watch</button>
+                                <ul>
+                                    <li>list 1</li>
+                                    <li>list 1</li>
+                                    <li>list 1</li>
+                                    <li>list 1</li>
+                                    <li>list 1</li>
+                                    <li>list 1</li>
+                                    <li>list 1</li>
+                                    <li>list 1</li>
+                                    <li>list 1</li>
+                                    <li>list 1</li>
+                                    <li>list 1</li>
+                                </ul>
+                            </div>
+                        </div>
 
-          <button [routerLink]="['/login']" class="btn btn-outline-success my-2 my-sm-0" type="submit">LogIn/SignUp</button>
-        </li>
-      </div>
-    </nav>
-  </div>
-  <div >
-    <div class="row" *ngIf="currentIssue">
-      <div class="col-md-8">
-        <br><br>
-        <h2 style="text-align:center">{{currentIssue.title}}</h2>
-        <hr> 
-        <h5 style="text-align:center">Current Status -> {{currentIssue.status}}</h5>
-        <hr> 
-        <!-- <small>blog number - {{currentBlog.blogId}}</small> -->
-        <p style="text-align:center">Reported by {{currentIssue.reporterName}} on {{currentIssue.createdOn | date}}</p>
-        <!-- <p *ngIf="currentBlog.tags.length>0">tags : <span *ngFor="let tag of currentBlog.tags;let first=first;let last=last">{{tag}}{{last ? '' : ', '}}</span></p> -->
-        <hr>
-        <div style="text-align:center" [innerHtml]="currentIssue.description">
-           Description
+                        <div class="row text-center" *ngIf="currentIssue">
+                            <div class="col-md-4">
+                                <a class="btn btn-primary center-block" [routerLink]="['/issue-edit',currentIssue.issueId]">Edit
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="btn btn-warning center-block" (click)="goBackToPreviousPage()">Go Back </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Comment Panel-->
+                    <div class="row bootstrap snippets">
+                        <div class="col-md-6 col-md-offset-2 col-sm-12">
+                            <div class="comment-wrapper">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        Comment panel
+                                    </div>
+                                    <div class="panel-body">
+                                        <textarea class="form-control" (keydown)="sendCommentUsingKeypress($event)"
+                                            [(ngModel)]="commentArea" placeholder="write a comment..." rows="3"></textarea>
+                                        <br>
+                                        <button type="button" (click)="postComment()" class="btn btn-info pull-right">Post</button>
+                                        <div class="clearfix"></div>
+                                        <hr>
+                                        <ul class="media-list">
+                                            <li class="media" *ngFor="let comment of commentList">
+                                                <a href="#" class="pull-left">
+                                                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                </a>
+                                                <div class="media-body">
+                                                    <span class="text-muted pull-right">
+                                                        <small class="text-muted">30 min ago</small>
+                                                    </span>
+                                                    <strong class="text-success">@MartinoMont</strong>
+                                                    <p>
+                                                        {{comment}} <a href="#">#consecteturadipiscing </a>.
+                                                    </p>
+                                                </div>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <hr>
-        
-        
-      </div>
-      <div class="col-md-4">
-        <br><br>
-          <button type="button btn-block" class="btn btn-info">Watch</button>
-      </div>
     </div>
-    
-    <div class="row" *ngIf="currentIssue">
-      <div class="col-md-4">
-  
-        <a class="btn btn-primary center-block"  [routerLink]="['/issue-edit',currentIssue.issueId]">Edit </a>
-  
-      </div>
-      <div class="col-md-4">
-  
-        <a class="btn btn-danger center-block" (click)="deleteThisBlog()">Delete </a>
-  
-      </div>
-      <div class="col-md-4">
-  
-        <a class="btn btn-warning center-block" (click)="goBackToPreviousPage()">Go Back </a>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <!--Comment Panel-->
-  <div class="row bootstrap snippets">
-      <div class="col-md-6 col-md-offset-2 col-sm-12">
-          <div class="comment-wrapper">
-              <div class="panel panel-info">
-                  <div class="panel-heading">
-                      Comment panel
-                  </div>
-                  <div class="panel-body">
-                      <textarea class="form-control" (keydown)="sendCommentUsingKeypress($event)" [(ngModel)]="commentArea" placeholder="write a comment..." rows="3"></textarea>
-                      <br>
-                      <button type="button" (click)="postComment()" class="btn btn-info pull-right">Post</button>
-                      <div class="clearfix"></div>
-                      <hr>
-                      <ul class="media-list">
-                          <li class="media" *ngFor="let comment of commentList">
-                              <a href="#" class="pull-left">
-                                  <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                              </a>
-                              <div class="media-body">
-                                  <span class="text-muted pull-right">
-                                      <small class="text-muted">30 min ago</small>
-                                  </span>
-                                  <strong class="text-success">@MartinoMont</strong>
-                                  <p>
-                                       {{comment}} <a href="#">#consecteturadipiscing </a>.
-                                  </p>
-                              </div>
-                          </li>
-                           
-                           
-                      </ul>
-                  </div>
-              </div>
-          </div>
-  
-      </div>
-  </div>
-</div>
+
+    <footer>
+        <h5>@Issue Traking Tool</h5>
+    </footer>
+</body>

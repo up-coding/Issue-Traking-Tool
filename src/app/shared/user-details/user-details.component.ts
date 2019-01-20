@@ -1,4 +1,6 @@
 import { Component, OnInit, Input,Output,EventEmitter,OnChanges } from '@angular/core';
+import { Cookie } from 'ng2-cookies';
+ 
 
 @Component({
   selector: 'user-details',
@@ -6,22 +8,14 @@ import { Component, OnInit, Input,Output,EventEmitter,OnChanges } from '@angular
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error("Method not implemented.");
-  }
- 
- /*  @Input() userFirstName:string;
-  @Input() userLastName:string;
 
-  public firstChar:string;
-  public lastChar:string;
-  public mergeChar:string;
-  constructor() { }
+  userFullName:string;
+
+ constructor() { }
 
   ngOnInit():void {
-    this.firstChar = this.userFirstName[0];
-    this.lastChar = this.userFirstName[0];
-    this.mergeChar = this.firstChar + this.lastChar;
-  } */
+
+    this.userFullName = Cookie.get('receiverName');
+  } 
 
 }

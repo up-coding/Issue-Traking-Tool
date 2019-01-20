@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { IssueViewComponent } from './issue-view/issue-view.component';
 import { ToastrModule } from 'ngx-toastr';
 import { IssueEditComponent } from './issue-edit/issue-edit.component';
+import { AuthGuard } from '../auth.guard';
+ 
  
  
 
@@ -26,10 +28,12 @@ import { IssueEditComponent } from './issue-edit/issue-edit.component';
      ToastrModule.forRoot(),
     CKEditorModule,
     RouterModule.forChild([
-      {path:'dashboard',component:PersonalizedDashboardComponent},
-      {path:'issue-view/:issueId',component:IssueViewComponent},
-      {path:'issue-edit/:issueId',component:IssueEditComponent}
+      {path:'dashboard',component:PersonalizedDashboardComponent,canActivate:[AuthGuard]},
+      {path:'issue-view/:issueId',component:IssueViewComponent,canActivate:[AuthGuard]},
+      {path:'issue-edit/:issueId',component:IssueEditComponent,canActivate:[AuthGuard]},
+      {path:'issue',component:IssueCreateComponent,canActivate:[AuthGuard]}
     ])
-  ]
+  ],
+  providers:[AuthGuard]
 })
 export class IssueDescriptionModule { }

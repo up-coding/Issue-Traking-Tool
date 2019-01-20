@@ -11,53 +11,40 @@ import { Cookie } from 'ng2-cookies';
 })
 export class LoginComponent implements OnInit {
   
-  public email:string;
-  public password:string;
+  private email:string;
+  private password:string;
 
-  constructor(private toastr:ToastrService,
-    public appService:AppService,
-    public router:Router,
-    ) { console.log('login constructor')}
+  constructor(private toastr:ToastrService,public appService:AppService,public router:Router,){}
 
-  ngOnInit() {
-  }
-
-  
+  ngOnInit() {}
 
   public goToSignUp:any = ()=>{
      this.router.navigate(['/signup']);
   }
-
+  
   public signInFunction:any = ()=>{
-    console.log('sign in function');
-    if(!this.email){
-      this.toastr.warning('enter email');
-    }else if(!this.password){
-      ;
-      console.log(this.toastr.warning('enter password'));
-    }else{
-      let data = {
+     let data = {
         email:this.email,
         password:this.password
       };
-
-      this.appService.signInFunction(data).subscribe((apiResponse)=>{
+     this.appService.signInFunction(data).subscribe((apiResponse)=>{
         if(apiResponse.status === 200){
-           console.log(apiResponse);
-
            Cookie.set('authToken',apiResponse.data.authToken);
            Cookie.set('receiverId',apiResponse.data.userDetails.userId);
            Cookie.set('receiverName',apiResponse.data.userDetails.firstName + ' '+ apiResponse.data.userDetails.lastName);
            this.appService.setUserInfoToLocalStorage(apiResponse.data.userDetails);
+           this.toastr.success('','Welcome Back!');
            this.router.navigate(['/dashboard']);
           }else{
-          this.toastr.error(apiResponse.message);
-        }
+           this.toastr.error(apiResponse.message);
+          }
       },
       (err)=>{
-         this.toastr.error('some error occured');
+           this.toastr.error('Unable to login!, Try after sometime.');
       });
     }
-  }
 
+   
 }
+
+

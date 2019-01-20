@@ -6,6 +6,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RouterModule } from '@angular/router';
 import { IssueCreateComponent } from '../issue-description/issue-create/issue-create.component';
 import { IssueViewComponent } from '../issue-description/issue-view/issue-view.component';
+import { AuthGuard } from '../auth.guard';
+ 
 
 @NgModule({
   declarations: [SearchBoxComponent],
@@ -14,9 +16,9 @@ import { IssueViewComponent } from '../issue-description/issue-view/issue-view.c
     SharedModule,
     Ng2SearchPipeModule,
     RouterModule.forChild([
-       
-      {path:'issue-view/:issueId',component:IssueViewComponent}
+       {path:'issue-view/:issueId',component:IssueViewComponent,canActivate:[AuthGuard]}
     ])
-  ]
+  ],
+  providers:[AuthGuard]
 })
 export class SearchModule { }

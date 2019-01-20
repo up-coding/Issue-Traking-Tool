@@ -1,28 +1,27 @@
 .parent-div{
-    margin-top: 10%;
-    margin-bottom: 5%;
+    margin-top: 5%;
+    margin-bottom: 1%;
     
 }
  
- 
-
-.first-div h3{
-    text-align: center;
-    color: #333;
-}
-
-.second-div{
-    margin-top: 10%;
+.login-div{
+    margin-top: 2%;
+    margin-bottom: 1%;
     margin:auto;
     padding: 5%;
     background: #7FDBFF;
     box-shadow: 0 5px 8px 0 rgba(0,0,0, 0.2),0 9px 26px 0 rgba(0,0,0, 0.19);
 }
 
-.second-div h3{
+.login-div h3{
     text-align: center;
-    color: #fff;
+    color: #333;
 }
+
+.box-alert{
+    color:red;
+}
+ 
 
 .parent-div form{
     padding: 10%;
@@ -34,17 +33,18 @@
     padding: 1.5%;
     border:none;
     cursor: pointer;
+    margin-left:25%;
 }
 
-.first-div .btnSubmit{
+.login-div .btnSubmit{
     font-weight: 600;
     color: #fff;
     background-color: #0062cc;
 }
 
-.second-div .btnSubmit{
+.login-div .btnSubmit{
     font-weight: 600;
-    color: #0062cc;
-    background-color: #fff;
+    color: #fff;
+    background-color: #0062cc;
 }
 

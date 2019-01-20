@@ -1,12 +1,13 @@
-<div class="crop" [style.color]="userColor ? userColor :'white'" [style.background]="userBg ? userBg :'blue'">
-  {{firstChar}}
-</div>
-<div class="btn-group">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{userFirstName}} {{userLastName}}
+ 
+<li>
+  <button type="button"  class="btn  btn-success  dropdown-toggle" [(ngModel)]="userFullName" data-toggle="dropdown" aria-haspopup="true"
+  aria-haspopup="true" ngDefaultControl>
+    {{userFullName}}
   </button>
   <div class="dropdown-menu dropdown-menu-right">
-    <button class="dropdown-item" type="button">Log out</button>
-  
+      <a class="dropdown-item" [routerLink]="['/logout']">Logout</a>
   </div>
-</div>
+</li>
+ 
+
+ 

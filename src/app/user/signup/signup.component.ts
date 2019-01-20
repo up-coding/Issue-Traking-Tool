@@ -10,44 +10,22 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  
-   public firstName:string;
-   public lastName:string;
-   public email:string;
-   public mobileNumber:Number;
-   public password:string;
+   private firstName:string;
+   private lastName:string;
+   private email:string;
+   private mobileNumber:Number;
+   private password:string;
 
+   constructor(private appService:AppService,private router:Router,private toastr:ToastrService){}
 
-  constructor(
-    public appService:AppService,
-    public router:Router,
-    private toastr:ToastrService) { }
-
-   ngOnInit() {
-    }
-
+   ngOnInit(){}
 
   public goToLogIn:any = () => {
       this.router.navigate(['/']);
   }
 
   public signUpFunction:any = () =>{
-      if(!this.firstName){
-          this.toastr.warning('Please enter First Name!');
-      }else if(!this.lastName){
-        this.toastr.warning('Please enter Last Name!');
-
-      }else if(!this.email){
-        this.toastr.warning('Please enter Email!');
-
-      }else if(!this.mobileNumber){
-        this.toastr.warning('Please enter Mobile Number!');
-
-      }else if(!this.password){
-        this.toastr.warning('Please enter Password!');
-
-      }else {
-        let data = {
+        let newUserObj = {
           firstName:this.firstName,
           lastName:this.lastName,
           mobileNumber:this.mobileNumber,
@@ -55,25 +33,20 @@ export class SignupComponent implements OnInit {
           password:this.password,
 
         };
-        console.log(data);
-
-        this.appService.signupFunction(data).subscribe((apiResponse)=>{
-           console.log(apiResponse);
+       this.appService.signupFunction(newUserObj).subscribe((apiResponse)=>{
            if(apiResponse.status === 200){
-              this.toastr.success('You have signed up successfully!');
+              this.toastr.success('You have signed up successfully!Please login to continew..','Welcome');
               setTimeout(()=>{
                 this.goToLogIn();
               },2000);
            }else{
-             this.toastr.error(apiResponse.errorMessage);
+             this.toastr.error(apiResponse.message);
            }
         },
         (err)=>{
-             this.toastr.error('Some error occured,Please try again!');
+             this.toastr.error('Some error occured,Please try after sometime!','Oops');
         });
       }
   }
 
-  
 
-}

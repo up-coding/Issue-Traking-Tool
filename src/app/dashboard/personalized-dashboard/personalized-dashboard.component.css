@@ -1,10 +1,13 @@
-.nav-div{
-    background-color: darkcyan;
-    width: 100px;
-    height: 100vh;
+ .search-div{
+     margin-top: 5%;
     
-}
+ }
 
-.nav-div a{
-    color:white;
-}
+ .search-box{
+     width: 70%
+ }
+
+ 
+ 
+ 
+  

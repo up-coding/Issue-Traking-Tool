@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError,map } from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { Cookie } from 'ng2-cookies';
+import { Router } from '@angular/router';
  
 
 
@@ -13,7 +15,7 @@ export class AppService {
   
   private url = 'http://localhost:3000/api/v1';
 
-  constructor(public httpClient:HttpClient) { }
+  constructor(public httpClient:HttpClient,public router:Router) { }
 
   public getUserInfoFromLocalStorage = ()=>{
     return JSON.parse(localStorage.getItem('userInfo'));
@@ -54,6 +56,14 @@ export class AppService {
      .set('userId',data.userId);
      return this.httpClient.get(`${this.url}/users/${params}/details`); 
   }
+
+  public signOutFunction = ():Observable<any>=>{
+      const params = new HttpParams()
+      .set('authToken',Cookie.get('authToken'));
+     return this.httpClient.post(`${this.url}/users/logout`,params);
+  }
+  
+  
 
   private handleError = (err:HttpErrorResponse)=>{
       let errorMessage = '';

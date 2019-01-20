@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { IssueCreateComponent } from '../issue-description/issue-create/issue-create.component';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from '../auth.guard';
+ 
 
 @NgModule({
   declarations: [PersonalizedDashboardComponent],
@@ -19,10 +21,11 @@ import { FormsModule } from '@angular/forms';
     SharedModule,
     FormsModule,
     RouterModule.forChild([
-      {path:'search',component:SearchBoxComponent},
-      {path:'issue',component:IssueCreateComponent},
+      {path:'search',component:SearchBoxComponent,canActivate:[AuthGuard]},
+      {path:'issue',component:IssueCreateComponent,canActivate:[AuthGuard]},
       {path:'issue-view/:issueId',component:IssueCreateComponent}
     ])
-  ]
+  ],
+  providers:[AuthGuard]
 })
 export class DashboardModule { }
