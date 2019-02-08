@@ -12,7 +12,7 @@ export class IssueService {
   private authToken = Cookie.get('authToken');
   
   constructor(public httpClient:HttpClient) { 
-    console.log('issue service initialized');
+   
   }
 
   public createAIssue = (data):Observable<any>=>{
@@ -22,9 +22,7 @@ export class IssueService {
   }
 
   public getAllIssues = () :Observable<any>=>{
-      let variable = this.httpClient.get(`${this.url}/issues/view/all?authToken=${this.authToken}`);
-      console.log(variable);
-      return variable;
+     return this.httpClient.get(`${this.url}/issues/view/all?authToken=${this.authToken}`);
   }
 
   public getSingleIssue = (issueId):Observable<any>=>{

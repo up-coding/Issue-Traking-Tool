@@ -5,15 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Cookie } from 'ng2-cookies';
 import { IssueService } from 'src/app/issue.service';
 import { AppService } from 'src/app/app.service';
-import { FormBuilder,FormGroup} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
  
 
- 
- 
- 
-
- 
 @Component({
   selector: 'app-issue-description',
   templateUrl: './issue-create.component.html',
@@ -23,12 +17,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class IssueCreateComponent implements OnInit,OnDestroy {
   
-   
-   
+  /**
+   * Adding rich text editor to 
+   * the view
+   */
   @ViewChild(CKEditorComponent) ckEditor: CKEditorComponent;
  
-  issueForm:FormGroup;
-
   public title:string;
   public description:any;
   public files:[] ;
@@ -41,8 +35,19 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
   public status = ['In-backlog','In-Progress','In-Test','Done'];
   public userStatus:any;
   public currentIssue;
+  public currentStatus;
+  public assignee;
   private myFiles:string [] = [];
   
+  /**
+   * Constructor
+   * @param issueService 
+   * @param appService 
+   * @param toastr 
+   * @param _route 
+   * @param router 
+   * @param location 
+   */
   constructor(public issueService:IssueService,
     public appService:AppService,
     private toastr:ToastrService,
@@ -51,6 +56,9 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
     private location:Location 
     ) {}
   
+  /**
+   * Initializing userdetails
+   */
   ngOnInit() {
     this.authToken = Cookie.get('authToken');
     this.reporterId = Cookie.get('receiverId');
@@ -59,7 +67,7 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
   }
 
   
-  
+  //text editor configuration
   ngAfterViewChecked(){
     let editor = this.ckEditor.instance;
     editor.config.height = '200';
@@ -77,11 +85,22 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
     editor.config.removeButtons = `Anchor,Save,Find,Replace,Scayt,SelectAll,Form,Radio`;
   }
 
+  /**
+   * Method to select 
+   * status from the view
+   * @param issueStatus 
+   */
   public selectStatus(issueStatus){
     this.userStatus = issueStatus
     return this.userStatus;
  }
 
+  /**
+   * method to select 
+   * user from the view
+   * @param id 
+   * @param name 
+   */
   public selectUser(id,name){
       this.assigneeId = id;
      this.assigneeName = name;
@@ -90,21 +109,23 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
    
    
 
-
+  /**
+   * method to get all username
+   */
   public getAllUsersName:any = (authToken)=>{
      this.appService.getAllUsers(authToken).subscribe((apiResponse:any)=>{
-          console.log(apiResponse);
           for (let x in apiResponse.data) {
           let temp = { 'userId': apiResponse.data[x].userId, 'name': apiResponse.data[x].firstName + ' ' + apiResponse.data[x].lastName  };
               this.allAssignee.push(temp);          
           }
-          console.log(this.allAssignee);
         });
   }
 
-
-
-  
+  /**
+   * select event to select the files
+   * from event
+   * @param event 
+   */
   public onSelected(event) {
     if(event.currentTarget.files.length > 0){
         const selectedFiles = event.currentTarget.files;
@@ -115,7 +136,11 @@ export class IssueCreateComponent implements OnInit,OnDestroy {
     }
   }
   
-public onSubmit = ()=>{
+  /**
+   * onSubmit this method will
+   * create new Issue
+   */
+  public onSubmit = ()=>{
     if(!this.title){
       this.toastr.warning('Title required!');
     }else if(!this.description){
@@ -148,6 +173,7 @@ public onSubmit = ()=>{
     }); 
 } 
 
+//method to return previous page
  public goBack = ()=>{
    this.location.back();
  }

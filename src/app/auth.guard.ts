@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
 
   }  
   canActivate(next:ActivatedRouteSnapshot,state:RouterStateSnapshot): boolean {
-      console.log("in guard service");
+     
 
     if (Cookie.get('authToken') === undefined || Cookie.get('authToken') === '' || Cookie.get('authToken') === null) {
 

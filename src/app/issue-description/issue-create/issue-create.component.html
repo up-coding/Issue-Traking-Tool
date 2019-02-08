@@ -54,7 +54,7 @@
 
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Assignee</label>
-                  <select (change)="selectUser(assignee.userId,assignee.name)" id="assigneeId" [(ngModel)]="assignee"
+                  <select (change)="selectUser(assignee.userId,assignee.name)" id="assigneeId" [(ngModel)]="allAssignee"
                     #assig="ngModel" name="assignee" class="form-control" required>
                     <option *ngFor="let assignee of allAssignee" [ngValue]="assignee">{{assignee.name}}</option>
 
@@ -67,7 +67,7 @@
 
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Status</label>
-                  <select (change)="selectStatus(currentStatus)" name="status" id="inputStatus" [(ngModel)]="currentStatus"
+                  <select (change)="selectStatus(currentStatus)" name="status" id="inputStatus" [(ngModel)]="status"
                     #inputStatus="ngModel" class="form-control" required>
                     <option *ngFor="let currentStatus of status" [ngValue]="currentStatus">{{currentStatus}}</option>
 

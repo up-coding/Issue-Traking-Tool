@@ -4,7 +4,6 @@ import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IssueService } from 'src/app/issue.service';
-import { NgForm } from '@angular/forms';
 import { SocketService } from 'src/app/socket.service';
  
 declare var $: any;
@@ -16,25 +15,44 @@ declare var $: any;
   providers:[ ]
 })
 export class PersonalizedDashboardComponent implements OnInit {
-
+  /**
+   * Allow component to add datatable to 
+   * the view
+   */
   @ViewChild('dataTable') table: { nativeElement: any; };
   dataTable:any;
   dtOptions:any; 
-
+  
+  //authToken of a user
   public authToken:any;
+
+  //contains user information
   public userInfo:any;
+
+  //contains user id
   public receiverId:any;
+
+  //contains user name
   public receiverName:any;
+
+  //contains All assignedissue to a perticular user
   public allAssignedIssue: any;
-   
   public list=[];
   public disconnectedSocket:boolean;
-  q:string;
-  res: any;
-  allIssueDetails:any;
-  assigneeId:any;
-  newList: any[];
-
+  public q:string;
+  public res: any;
+  public allIssueDetails:any;
+  public assigneeId:any;
+  public newList: any[];
+  
+  /**
+   * constructor
+   * @param appSevice 
+   * @param socketService 
+   * @param issueService 
+   * @param router 
+   * @param toastr 
+   */
   constructor(public appSevice:AppService,
     public socketService:SocketService,
     public issueService:IssueService,
@@ -45,6 +63,10 @@ export class PersonalizedDashboardComponent implements OnInit {
       this.receiverName = Cookie.get('receiverName');
     }
 
+    /**
+     * method to navigate search
+     * query to search view
+     */
     public submitSearch(){
         let query = this.q;
         if(query){
@@ -52,6 +74,10 @@ export class PersonalizedDashboardComponent implements OnInit {
         }
     }
 
+    /**
+     * Initializing datatable to 
+     * the view
+     */
    ngOnInit() {
     this.dtOptions = {
         "paging":   true,
@@ -70,7 +96,10 @@ export class PersonalizedDashboardComponent implements OnInit {
     this.getAllIssues();
   }
 
-
+  /**
+   * Get all issue for the 
+   * logged in user
+   */
   public getAllIssues = ()=>{
       this.issueService.getAllIssues().subscribe(response=>{
         this.allIssueDetails = response.data;
@@ -87,16 +116,10 @@ export class PersonalizedDashboardComponent implements OnInit {
        this.newList = this.list.filter(value => Object.keys(value).length !== 0)
       },err=> {this.toastr.error('Some error occured')});
     }
-
-   public checkStatus:any  = ()=>{
-     if(Cookie.get('authToken') === undefined || Cookie.get('authToken') === '' || Cookie.get('authToken') === null){
-         this.router.navigate(['/']);
-         return false;
-     }else{
-       return true;
-     }
-   }
-
+ 
+   /**
+    * Verify user
+    */
    public verifyUserConfirmation:any = ()=>{
        this.socketService.verifyUser().subscribe((data)=>{
           this.disconnectedSocket = false;
@@ -105,10 +128,8 @@ export class PersonalizedDashboardComponent implements OnInit {
        });
    } 
 
-  public getAllAssignedIssueList:any = () =>{
-         
-  } 
-
+   
+  /**Redirect to create new issue */
   public createNewIssue = ()=>{
     this.router.navigate(['/issue']);
   }

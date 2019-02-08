@@ -11,13 +11,23 @@ declare var $: any;
   styleUrls: ['./search-box.component.css']
 })
 export class SearchBoxComponent implements OnInit,OnDestroy {
-  @ViewChild('dataTable') table: { nativeElement: any; };
-  private dataTable:any;
-  private dtOptions:any;
-  private routeSub:any;
-  private query:string;
-  private allIssueDetails:[];
 
+  /**
+   * Adding datatable to the view
+   */
+  @ViewChild('dataTable') table: { nativeElement: any; };
+  public dataTable:any;
+  public dtOptions:any;
+  public routeSub:any;
+  public query:string;
+  public allIssueDetails:[];
+
+  /**
+   * Constructor
+   * @param _route 
+   * @param issueService 
+   * @param toastr 
+   */
   constructor(private _route:ActivatedRoute,public issueService:IssueService,private toastr:ToastrService) { }
 
   ngOnInit() {
@@ -44,10 +54,8 @@ export class SearchBoxComponent implements OnInit,OnDestroy {
 
   public getAllIssues = ()=>{
      this.issueService.getAllIssues().subscribe(response=>{
-          
-          this.allIssueDetails = response['data'];
-           
-     },err=>{
+           this.allIssueDetails = response['data'];
+      },err=>{
            this.toastr.error('some error occured');
      });
   }

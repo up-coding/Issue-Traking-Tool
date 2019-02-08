@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError,map } from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Cookie } from 'ng2-cookies';
 import { Router } from '@angular/router';
@@ -22,12 +21,10 @@ export class AppService {
   }
 
   public getUrl = ()=>{
-    console.log(this.url);
     return this.url;
   }
 
   public setUserInfoToLocalStorage = (data) =>{
-    console.log(data);
     localStorage.setItem('useInfo',JSON.stringify(data));
   }
 
@@ -64,15 +61,5 @@ export class AppService {
   }
   
   
-
-  private handleError = (err:HttpErrorResponse)=>{
-      let errorMessage = '';
-      if(err.error instanceof Error){
-         errorMessage = `An error occurred: ${err.error.message}`;
-      }else{
-        errorMessage = `Server returned code: ${err.status}, error message is:${err.message}`;
-      }
-      console.log(err.message);
-      return Observable.throw(errorMessage);
-  }
+ 
 }

@@ -10,11 +10,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-   private firstName:string;
-   private lastName:string;
-   private email:string;
-   private mobileNumber:Number;
-   private password:string;
+   public firstName:string;
+   public lastName:string;
+   public email:string;
+   public mobileNumber:Number;
+   public password:string;
 
    constructor(private appService:AppService,private router:Router,private toastr:ToastrService){}
 

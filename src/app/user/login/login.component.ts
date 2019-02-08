@@ -11,8 +11,8 @@ import { Cookie } from 'ng2-cookies';
 })
 export class LoginComponent implements OnInit {
   
-  private email:string;
-  private password:string;
+  public email:string;
+  public password:string;
 
   constructor(private toastr:ToastrService,public appService:AppService,public router:Router,){}
 

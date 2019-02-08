@@ -6,16 +6,12 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { RouterModule ,Routes} from '@angular/router';
 import { PersonalizedDashboardComponent } from '../dashboard/personalized-dashboard/personalized-dashboard.component';
 import { SharedModule } from '../shared/shared.module';
-import { FileUploadModule, FileSelectDirective } from 'ng2-file-upload';
 import { HttpClientModule } from '@angular/common/http';
 import { IssueViewComponent } from './issue-view/issue-view.component';
 import { ToastrModule } from 'ngx-toastr';
 import { IssueEditComponent } from './issue-edit/issue-edit.component';
 import { AuthGuard } from '../auth.guard';
  
- 
- 
-
 @NgModule({
   declarations: [IssueCreateComponent, IssueViewComponent, IssueEditComponent],
   imports: [

@@ -15,15 +15,12 @@ export class LogoutComponent implements OnInit {
   constructor(private appService:AppService,private socketService:SocketService,private router:Router,private toastr:ToastrService){}
 
   ngOnInit() {
-      console.log('logout init');
-      this.signOut();
+       this.signOut();
   }
 
   public signOut: any = () => {
-    console.log('sign out called');
       this.appService.signOutFunction().subscribe((apiResponse) => {
           if (apiResponse.status === 200) {
-          console.log("logout called")
           Cookie.delete('authToken');
           Cookie.delete('receiverId');
           Cookie.delete('receiverName');
@@ -34,8 +31,5 @@ export class LogoutComponent implements OnInit {
       }, (err) => {
           this.toastr.error('Unable to logout!','Error')
       });
-
-      
-
-  }  
+   }  
 }
