@@ -1,110 +1,135 @@
 <body>
-    <div id="wrapper">
-        <div id="main">
-                <!--navbar-->
-                <div class="">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="logo" href="#">
-                            <h3>Issue Tracking Tool</h3>
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+  <div id="wrapper">
+    <div id="main">
+      <!--navbar-->
+      <div class="">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <a class="logo" href="#">
+            <h3>Issue Tracking Tool</h3>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ml-auto">
-                                <li class="form-inline my-2 my-lg-0">
-                                    <user-details></user-details>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </nav>
-                </div>
-                <!--navbar ends-->
-                <div class="container" >
-                   
-                        <div class="row div1" >
-                            <div class="col-md-10 issue-div" *ngIf="currentIssue">
-                                    <h2>{{currentIssue?.title}}</h2>
-                                    <hr>
-                                    <h5>Current status : {{currentIssue?.status}}</h5>
-                                    <hr>
-                                    <p>Reported by: {{currentIssue?.reporterName}} on {{currentIssue?.createdOn | date}}</p>
-                                    <hr>
-                                    <div id="desc" [innerHTML]="currentIssue.description"></div>
-                                  
-                                
-                            </div>
-                            
-                            <div class="col-md-2 text-center">
-                                <button type="button btn-block" (click)="addWatcher()" class="btn btn-info btn-watch">Watch</button>
-                                <ul>
-                                     
-                                    <li>list 1</li>
-                                    <li>list 1</li>
-                                    <li>list 1</li>
-                                    <li>list 1</li>
-                                    <li>list 1</li>
-                                    <li>list 1</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <hr>
-                        <div *ngIf="currentIssue">
-                        <div class="form-group col-md-4">
-                                <a class="btn btn-primary center-block" [routerLink]="['/issue-edit',currentIssue?.issueId]">Edit
-                                </a>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <a class="btn btn-warning center-block" (click)="goBackToPreviousPage()">Go Back </a>
-                            </div>
-                        </div>
-                    <hr>
-                    <!--Comment Panel-->
-                    <div class="row bootstrap snippets">
-                        <div class="col-md-6 col-md-offset-2 col-sm-12">
-                            <div class="comment-wrapper">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        Comment panel
-                                    </div>
-                                    <div class="panel-body" >
-                                        <textarea class="form-control" (keydown)="sendCommentUsingKeypress($event)"
-                                            [(ngModel)]="commentArea" placeholder="write a comment..." rows="3"></textarea>
-                                        <br>
-                                        <button type="button" (click)="postComment()" class="btn btn-info pull-right">Post</button>
-                                        <div class="clearfix"></div>
-                                        <hr>
-                                        <ul  *ngIf="commentList">
-                                            <li class="media" *ngFor="let comment of commentList">
-                                                <div *ngIf="this.issueId == comment.issueId">
-                                                    <hr>
-                                                    <strong class="text-success">{{comment.senderName }}</strong>
-                                                    <span>
-                                                        <small> {{comment.createdOn | date:'HH:mm'}}</small>
-                                                    </span>
-                                                    <p>
-                                                        {{comment.comment}}
-                                                    </p>
-                                                </div>
-                                            </li>
-
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="form-inline my-2 my-lg-0">
+                <user-details></user-details>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <!--navbar ends-->
+      <div class="container">
+        <div class="row">
+          <div class="issue-details" *ngIf="currentIssue">
+            <h2 class="issue-heading">
+              Issue Title : {{ currentIssue?.title }}
+            </h2>
+            <h5 class="issue-status">
+              Current status : {{ currentIssue?.status }}
+            </h5>
+            <p>
+              Reported by: {{ currentIssue?.reporterName }} on
+              {{ currentIssue?.createdOn | date: "medium" }}
+            </p>
+            <hr />
+            <div
+              class="issue-description"
+              [innerHTML]="currentIssue.description"
+            ></div>
+            <hr />
+            <div *ngIf="currentIssue">
+              <button
+                class="btn btn-edit"
+                [routerLink]="['/issue-edit', currentIssue?.issueId]"
+              >
+                Edit
+              </button>
+              <button class="btn btn-back" (click)="goBackToPreviousPage()">
+                Back
+              </button>
             </div>
-        </div>
-    </div>
+          </div>
 
-    <footer>
-        <h5>@Issue Traking Tool</h5>
-    </footer>
+          <div class="issue-watch">
+            <button type="button" (click)="addWatcher()" class="btn btn-watch">
+              <i class="fa fa-eye" aria-hidden="true"></i>Watch
+            </button>
+            <ul class="watcher-list">
+              <li>list 1</li>
+              <li>list 1</li>
+              <li>list 1</li>
+              <li>list 1</li>
+              <li>list 1</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr />
+        <!--Comment Panel-->
+        <div class="row bootstrap snippets">
+          <div class="col-md-6 col-md-offset-2 col-sm-12">
+            <div class="comment-wrapper">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  Comment panel
+                </div>
+                <div class="panel-body">
+                  <textarea
+                    class="form-control"
+                    (keydown)="sendCommentUsingKeypress($event)"
+                    [(ngModel)]="commentArea"
+                    placeholder="write a comment..."
+                    rows="3"
+                  ></textarea>
+                  <br />
+                  <button
+                    type="button"
+                    (click)="postComment()"
+                    class="btn btn-info pull-right"
+                  >
+                    Post
+                  </button>
+                  <div class="clearfix"></div>
+                  <hr />
+                  <ul *ngIf="commentList">
+                    <li class="media" *ngFor="let comment of commentList">
+                      <div *ngIf="this.issueId == comment.issueId">
+                        <hr />
+                        <strong class="text-success">{{
+                          comment.senderName
+                        }}</strong>
+                        <span>
+                          <small>
+                            {{ comment.createdOn | date: "HH:mm" }}</small
+                          >
+                        </span>
+                        <p>
+                          {{ comment.comment }}
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <h5>@Issue Traking Tool</h5>
+  </footer>
 </body>

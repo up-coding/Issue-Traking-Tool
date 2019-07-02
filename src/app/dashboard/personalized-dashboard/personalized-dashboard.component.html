@@ -1,90 +1,101 @@
 <body>
-    <div id="wrapper">
-        <div id="main">
-            <div>
-                <div class="">
-                    <nav class="navbar navbar-expand-lg navbar-light navbar-light">
-                        <a class="logo" href="#">
-                            <h3>Issue Tracking Tool</h3>
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+  <div id="wrapper">
+    <div id="main">
+      <div>
+        <div class="">
+          <nav class="navbar navbar-expand-lg navbar-light navbar-light">
+            <a class="logo" href="#">
+              <h3>Issue Tracking Tool</h3>
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-                        </button>
-
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ml-auto">
-                                <user-details></user-details>
-                            </ul>
-
-                        </div>
-                    </nav>
-                </div>
-                <div class="container">
-                    <div class="row search-div">
-                        <div class="col-md-8 col-sm-10 col-lg-8 col-xl-8 form-group">
-                            <form (ngSubmit)="submitSearch()" class="form-inline my-2  my-lg-0">
-                                <input class="form-control mr-sm-2 search-box" [(ngModel)]="q" type="search"
-                                    placeholder="Search" name="q">
-                                <button class="btn btn-outline-success search-btn" type="submit">Search</button>
-                            </form>
-                        </div>
-                        <div class="col-md-4 col-sm-10 col-lg-4 col-xl-4 form-group">
-                            <button (click)="createNewIssue()" type="button" class="btn btn-primary issue-btn">Create
-                                New Issue</button>
-                        </div>
-                    </div>
-                    <!--Second row ends-->
-
-                    <!--Third row-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!--Angular Datatables -->
-                            <table #dataTable class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Status</th>
-                                        <th>Title</th>
-                                        <th>Reporter</th>
-                                        <th>Date</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody *ngFor="let issue of newList">
-                                    <tr>
-                                        <a [routerLink]="['/issue-view',issue.issueId]">
-                                            <td>{{issue?.status}} </td>
-                                        </a>
-                                        <td>{{issue?.title}} </td>
-                                        <td> {{issue?.reporterName}}</td>
-                                        <td> {{issue?.createdOn | date}}</td>
-
-                                    </tr>
-
-
-                                </tbody>
-
-                            </table>
-                            <!--End of DAtatables-->
-                        </div>
-
-                    </div><!-- Third row ends-->
-
-
-                </div>
-
-
-
-                <!--main row ends-->
-
-
-
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <user-details></user-details>
+              </ul>
             </div>
+          </nav>
         </div>
-    </div>
+        <div class="container">
+          <div class="row search-div">
+            <div class="col-md-8 col-sm-10 col-lg-8 col-xl-8 form-group">
+              <form
+                (ngSubmit)="submitSearch()"
+                class="form-inline my-2  my-lg-0"
+              >
+                <input
+                  class="form-control mr-sm-2 search-box"
+                  [(ngModel)]="q"
+                  type="search"
+                  placeholder="Search"
+                  name="q"
+                />
+                <button
+                  class="btn btn-outline-success search-btn"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </form>
+            </div>
+            <div class="col-md-4 col-sm-10 col-lg-4 col-xl-4 form-group">
+              <button
+                (click)="createNewIssue()"
+                type="button"
+                class="btn btn-primary issue-btn"
+              >
+                Create New Issue
+              </button>
+            </div>
+          </div>
+          <!--Second row ends-->
 
-    <footer>
-        <h5>@Issue Traking Tool</h5>
-    </footer>
+          <!--Third row-->
+          <div class="row">
+            <div class="col-md-12">
+              <!--Angular Datatables -->
+              <table #dataTable class="display" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Title</th>
+                    <th>Reporter</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let issue of newList">
+                  <tr>
+                    <a [routerLink]="['/issue-view', issue.issueId]">
+                      <td>{{ issue?.status }}</td>
+                    </a>
+                    <td>{{ issue?.title }}</td>
+                    <td>{{ issue?.reporterName }}</td>
+                    <td>{{ issue?.createdOn | date }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <!--End of DAtatables-->
+            </div>
+          </div>
+          <!-- Third row ends-->
+        </div>
+
+        <!--main row ends-->
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <h5>@Issue Traking Tool</h5>
+  </footer>
 </body>

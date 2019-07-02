@@ -1,20 +1,70 @@
-h2,h5,p{
-    text-align: center;
+.row {
+  padding: 2rem 0;
 }
 
-.div1{
-    margin-top: 5%;
+.issue-details {
+  width: 80%;
 }
 
-#desc{
-    text-align: center;
-    clear: both;
+.issue-heading {
+  font-size: 1.5rem;
 }
 
-.btn-watch{
-    margin-top: 10%;
-    margin-left:auto;
+.issue-status {
+  font-size: 1rem;
 }
 
- 
- 
+.issue-description {
+  min-height: 30vh;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  border-radius: 17px;
+
+  margin: 0 1rem;
+  padding: 0.2rem 1rem;
+}
+
+.btn-edit,
+.btn-back {
+  float: right;
+  color: white;
+}
+
+.btn-edit {
+  background: rgb(7, 145, 64);
+}
+
+.btn-back {
+  background: gray;
+}
+
+#desc {
+  text-align: center;
+  clear: both;
+}
+
+.issue-watch {
+  width: 20%;
+  padding: 0.5rem;
+}
+
+.btn-watch {
+  margin: 1rem 0;
+  margin-left: 50%;
+  background: rgb(90, 90, 255);
+  transform: translateX(-50%);
+  color: white;
+}
+
+.btn-watch i {
+  margin-right: 0.5rem;
+}
+
+.watcher-list {
+  margin: 1rem 0;
+  list-style: none;
+  padding: 1rem 2rem;
+}
