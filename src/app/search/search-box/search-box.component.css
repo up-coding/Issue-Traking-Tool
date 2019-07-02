@@ -1,22 +1,12 @@
-.tbl-div{
-    margin-top:5%;
+.search-details {
+  width: 90%;
+  margin: 2rem auto;
 }
 
-#main{
-    overflow: auto;
-    padding-bottom: 100px;
+.search-details__heading {
+  font-size: 1rem;
 }
 
-footer{
-    position: relative;
-    height: 50px;
-    margin-top: -50px;
-    clear: both;
-    background-color:#3f5c7d;
-    
-}
-footer,p{
-    text-align:center;
-    color:white;
-    padding:5px;
+.search-details__table {
+  margin: 0.5rem 0;
 }

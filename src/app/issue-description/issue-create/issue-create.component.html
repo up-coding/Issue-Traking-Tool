@@ -79,13 +79,12 @@
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Assignee</label>
                   <select
-                    (change)="selectUser(assignee.userId, assignee.name)"
+                    (change)="selectUser(assignee)"
                     id="assigneeId"
                     [(ngModel)]="allAssignee"
                     #assig="ngModel"
-                    name="assignee"
+                    name="assignee1"
                     class="form-control"
-                    required
                   >
                     <option
                       *ngFor="let assignee of allAssignee"

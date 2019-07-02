@@ -68,3 +68,13 @@
   list-style: none;
   padding: 1rem 2rem;
 }
+
+.comment-wrapper {
+  padding: 0.5rem;
+  width: 50%;
+}
+
+.comment-heading {
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
+}
