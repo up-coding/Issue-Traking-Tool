@@ -1,62 +1,62 @@
-.signup-div{
-    margin-top: 5%;
-    margin-bottom: 5%;
-    
+.signup-div {
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
-.first-div{
-    margin: auto;
-    padding: 3%;
-    background: #7FDBFF;
-    box-shadow: 0 5px 8px 0 rgba(0,0,0, 0.2),0 9px 26px 0 rgba(0,0,0, 0.19);
+.first-div {
+  margin: auto;
+  padding: 3%;
+  background: #7fdbff;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 
-.first-div h3{
-    text-align: center;
-    color: #333;
+.first-div h3 {
+  text-align: center;
+  color: #333;
 }
 
-.box-alert{
-    color:red;
-}
- 
-
-.signup-div form{
-    padding: 5%;
+.box-alert {
+  color: red;
 }
 
-.btnSubmit{
-    width: 50%;
-    border-radius: 1rem;
-    padding: 1.5%;
-    border:none;
-    cursor: pointer;
-    margin-left:25%;
+.signup-div form {
+  padding: 5%;
 }
 
-.first-div .btnSubmit{
-    font-weight: 600;
-    color: #fff;
-    background-color: #0062cc;
+.form-control {
+  border-radius: 17px;
 }
 
- 
-
-#main{
-    overflow: auto;
-    padding-bottom: 100px;
+.btnSubmit {
+  width: 50%;
+  border-radius: 1rem;
+  padding: 1.5%;
+  border: none;
+  cursor: pointer;
+  margin-left: 25%;
 }
 
-footer{
-    position: relative;
-    height: 50px;
-    margin-top: -50px;
-    clear: both;
-    background-color:#3f5c7d;
-    
+.first-div .btnSubmit {
+  font-weight: 600;
+  color: #fff;
+  background-color: #0062cc;
 }
-footer,p{
-    text-align:center;
-    color:white;
-    padding:5px;
+
+#main {
+  overflow: auto;
+  padding-bottom: 100px;
+}
+
+footer {
+  position: relative;
+  height: 50px;
+  margin-top: -50px;
+  clear: both;
+  background-color: #3f5c7d;
+}
+footer,
+p {
+  text-align: center;
+  color: white;
+  padding: 5px;
 }

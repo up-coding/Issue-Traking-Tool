@@ -1,73 +1,115 @@
-<body>
-    <div id="wrapper">
-        <div id="main">
-            <div>
-                <!--Navbar-->
-                <div class="">
-                    <nav class="navbar navbar-expand-lg navbar-expand-sm navbar-light">
-                        <a class="logo" href="#">
-                            <h3>Issue Tracking Tool</h3>
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ml-auto li">
-                                <li class="form-inline my-2 my-lg-0">
+<div id="wrapper">
+  <div id="main">
+    <div>
+      <!--Navbar-->
 
-                                    <button [routerLink]="['/signup']" class="btn btn-success ml-auto" type="submit">SignUp</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-
-                <!--Login Form-->
-                <div class="container parent-div">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-8 col-xl-6 col-lg-6 col-10 login-div">
-                            <h3>LogIn</h3>
-                            <form #logInForm="ngForm">
-                                <div class="form-group">
-                                    <input type="email" id="inputEmail" [(ngModel)]="email" #emailInput="ngModel"
-                                        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" class="form-control"
-                                        placeholder="Enter your email..." name="email" required>
-                                    <span *ngIf="emailInput.errors?.required && emailInput.touched" class="box-alert">
-                                        Email is required!
-                                    </span>
-                                    <span *ngIf="emailInput.errors?.pattern && emailInput.touched" class="box-alert">
-                                        Email is invalid!
-                                    </span>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="password" id="inputPassword" pattern="^.{8,15}$" #passwordInput="ngModel"
-                                        [(ngModel)]="password" class="form-control" placeholder="Enter your password..."
-                                        name="password" required>
-                                    <span *ngIf="passwordInput.errors?.required && passwordInput.touched" class="box-alert">
-                                        Password required!
-                                    </span>
-                                    <span *ngIf="passwordInput.errors?.pattern && passwordInput.touched" class="box-alert">
-                                        Password must between 8 to 15 character long!
-                                    </span>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="submit" (click)="signInFunction()" [disabled]="!logInForm.form.valid"
-                                        class="btnSubmit" value="Login">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
+      <nav class="navbar navbar-expand-lg navbar-expand-sm navbar-light">
+        <a class="logo" href="#">
+          <h3>Issue Tracking Tool</h3>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto li">
+            <li class="form-inline my-2 my-lg-0">
+              <button
+                [routerLink]="['/signup']"
+                class="btn btn-success ml-auto"
+                type="submit"
+              >
+                SignUp
+              </button>
+            </li>
+          </ul>
         </div>
-    </div>
+      </nav>
 
-    <footer>
-        <h5>@Issue Traking Tool</h5>
-    </footer>
-</body>
+      <!--Login Form-->
+      <div class="container parent-div">
+        <div class="row">
+          <div class="col-md-6 col-sm-8 col-xl-6 col-lg-6 col-10 login-div">
+            <h3>LogIn</h3>
+            <form #logInForm="ngForm">
+              <div class="form-group">
+                <input
+                  type="email"
+                  id="inputEmail"
+                  [(ngModel)]="email"
+                  #emailInput="ngModel"
+                  pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                  class="form-control"
+                  placeholder="Enter your email..."
+                  name="email"
+                  required
+                />
+                <span
+                  *ngIf="emailInput.errors?.required && emailInput.touched"
+                  class="box-alert"
+                >
+                  Email is required!
+                </span>
+                <span
+                  *ngIf="emailInput.errors?.pattern && emailInput.touched"
+                  class="box-alert"
+                >
+                  Email is invalid!
+                </span>
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="password"
+                  id="inputPassword"
+                  pattern="^.{8,15}$"
+                  #passwordInput="ngModel"
+                  [(ngModel)]="password"
+                  class="form-control"
+                  placeholder="Enter your password..."
+                  name="password"
+                  required
+                />
+                <span
+                  *ngIf="
+                    passwordInput.errors?.required && passwordInput.touched
+                  "
+                  class="box-alert"
+                >
+                  Password required!
+                </span>
+                <span
+                  *ngIf="passwordInput.errors?.pattern && passwordInput.touched"
+                  class="box-alert"
+                >
+                  Password must between 8 to 15 character long!
+                </span>
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="submit"
+                  (click)="signInFunction()"
+                  [disabled]="!logInForm.form.valid"
+                  class="btnSubmit"
+                  value="Login"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <h5>@Issue Traking Tool</h5>
+</footer>

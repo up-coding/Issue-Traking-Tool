@@ -1,68 +1,72 @@
-.parent-div{
-    margin-top: 5%;
-    margin-bottom: 1%;
-    
-}
- 
-.login-div{
-    margin-top: 2%;
-    margin-bottom: 1%;
-    margin:auto;
-    padding: 5%;
-    background: #7FDBFF;
-    box-shadow: 0 5px 8px 0 rgba(0,0,0, 0.2),0 9px 26px 0 rgba(0,0,0, 0.19);
+.parent-div {
+  margin-top: 5%;
+  margin-bottom: 1%;
 }
 
-.login-div h3{
-    text-align: center;
-    color: #333;
+.login-div {
+  margin-top: 2%;
+  margin-bottom: 1%;
+  margin: auto;
+  padding: 2rem 1rem;
+  background: #7fdbff;
+  border-radius: 4px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 
-.box-alert{
-    color:red;
-}
- 
-
-.parent-div form{
-    padding: 10%;
+.login-div h3 {
+  text-align: center;
+  color: #333;
+  margin: 0;
 }
 
-.btnSubmit{
-    width: 50%;
-    border-radius: 1rem;
-    padding: 1.5%;
-    border:none;
-    cursor: pointer;
-    margin-left:25%;
+.box-alert {
+  color: red;
 }
 
-.login-div .btnSubmit{
-    font-weight: 600;
-    color: #fff;
-    background-color: #0062cc;
+.parent-div form {
+  margin: 1rem;
 }
 
-.login-div .btnSubmit{
-    font-weight: 600;
-    color: #fff;
-    background-color: #0062cc;
+.parent-div .form-control {
+  border-radius: 17px;
 }
 
-#main{
-    overflow: auto;
-    padding-bottom: 100px;
+.btnSubmit {
+  width: 50%;
+  border-radius: 1rem;
+  padding: 1.5%;
+  border: none;
+  cursor: pointer;
+  margin-left: 25%;
 }
 
-footer{
-    position: relative;
-    height: 50px;
-    margin-top: -50px;
-    clear: both;
-    background-color:#3f5c7d;
-    
+.login-div .btnSubmit {
+  font-weight: 600;
+  color: #fff;
+  background-color: #0062cc;
 }
-footer,p{
-    text-align:center;
-    color:white;
-    padding:5px;
+
+.login-div .btnSubmit {
+  font-weight: 600;
+  color: #fff;
+  background-color: #0062cc;
+}
+
+#main {
+  overflow: auto;
+  padding-bottom: 100px;
+}
+
+footer {
+  position: relative;
+  height: 50px;
+  margin-top: -50px;
+  clear: both;
+  background-color: #3f5c7d;
+}
+footer,
+p {
+  text-align: center;
+  color: white;
+  padding: 5px;
 }
