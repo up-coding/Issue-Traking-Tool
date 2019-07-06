@@ -54,3 +54,10 @@ p {
   color: white;
   padding: 5px;
 }
+
+@media screen and (max-width: 40rem) {
+  .heading {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+}

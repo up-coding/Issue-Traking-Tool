@@ -5,7 +5,7 @@
       <div class="">
         <nav class="navbar navbar-expand-lg navbar-light">
           <a class="logo" href="#">
-            <h3>Issue Tracking Tool</h3>
+            <h3 class="heading">Issue Tracking Tool</h3>
           </a>
           <button
             class="navbar-toggler"
@@ -42,6 +42,7 @@
               Reported by: {{ currentIssue?.reporterName }} on
               {{ currentIssue?.createdOn | date: "medium" }}
             </p>
+
             <hr />
             <div
               class="issue-description"
@@ -60,19 +61,22 @@
               </button>
             </div>
           </div>
-
+          <hr />
           <div class="issue-watch">
             <button type="button" (click)="addWatcher()" class="btn btn-watch">
               <i class="fa fa-eye" aria-hidden="true"></i>Watch
             </button>
-            <ul class="watcher-list">
-              <li>list 1</li>
-              <li>list 1</li>
-              <li>list 1</li>
-              <li>list 1</li>
-              <li>list 1</li>
-            </ul>
+
+            <select name="" id="" class="watcher-list">
+              <option value="">Watcher 1</option>
+              <option value="">Watcher 1</option>
+              <option value="">Watcher 1</option>
+              <option value="">Watcher 1</option>
+              <option value="">Watcher 1</option>
+              <option value="">Watcher 1</option>
+            </select>
           </div>
+          <hr />
         </div>
 
         <!--Comment Panel-->

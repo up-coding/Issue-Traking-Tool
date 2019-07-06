@@ -1,6 +1,6 @@
 .signup-div {
-  margin-top: 5%;
-  margin-bottom: 5%;
+  width: 50%;
+  margin: 3rem auto;
 }
 
 .first-div {
@@ -59,4 +59,16 @@ p {
   text-align: center;
   color: white;
   padding: 5px;
+}
+
+@media screen and (max-width: 40rem) {
+  .heading {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  .signup-div {
+    width: 95%;
+    margin: 2rem auto;
+    padding: 1rem 0;
+  }
 }
