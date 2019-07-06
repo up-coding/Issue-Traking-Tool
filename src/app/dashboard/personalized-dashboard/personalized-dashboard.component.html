@@ -5,7 +5,7 @@
         <div class="">
           <nav class="navbar navbar-expand-lg navbar-light navbar-light">
             <a class="logo" href="#">
-              <h3>Issue Tracking Tool</h3>
+              <h3 class="heading">Issue Tracking Tool</h3>
             </a>
             <button
               class="navbar-toggler"
@@ -28,7 +28,7 @@
         </div>
         <div class="container">
           <div class="row search-div">
-            <div class="col-md-8 col-sm-10 col-lg-8 col-xl-8 form-group">
+            <div class="form-group">
               <form
                 (ngSubmit)="submitSearch()"
                 class="form-inline my-2  my-lg-0"
@@ -48,7 +48,7 @@
                 </button>
               </form>
             </div>
-            <div class="col-md-4 col-sm-10 col-lg-4 col-xl-4 form-group">
+            <div class="form-group">
               <button
                 (click)="createNewIssue()"
                 type="button"
@@ -61,32 +61,32 @@
           <!--Second row ends-->
 
           <!--Third row-->
-          <div class="row">
-            <div class="col-md-12">
-              <!--Angular Datatables -->
-              <table #dataTable class="display" style="width:100%">
-                <thead>
-                  <tr>
-                    <th>Status</th>
-                    <th>Title</th>
-                    <th>Reporter</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
-                <tbody *ngFor="let issue of newList">
-                  <tr>
-                    <a [routerLink]="['/issue-view', issue.issueId]">
-                      <td>{{ issue?.status }}</td>
-                    </a>
-                    <td>{{ issue?.title }}</td>
-                    <td>{{ issue?.reporterName }}</td>
-                    <td>{{ issue?.createdOn | date }}</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!--End of DAtatables-->
-            </div>
+
+          <div class="table-container">
+            <!--Angular Datatables -->
+            <table #dataTable>
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>Title</th>
+                  <th>Reporter</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let issue of newList">
+                <tr>
+                  <a [routerLink]="['/issue-view', issue.issueId]">
+                    <td>{{ issue?.status }}</td>
+                  </a>
+                  <td>{{ issue?.title }}</td>
+                  <td>{{ issue?.reporterName }}</td>
+                  <td>{{ issue?.createdOn | date }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <!--End of DAtatables-->
           </div>
+
           <!-- Third row ends-->
         </div>
 

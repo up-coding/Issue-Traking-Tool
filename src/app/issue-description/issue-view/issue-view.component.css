@@ -15,7 +15,7 @@
 }
 
 .issue-description {
-  min-height: 30vh;
+  min-height: 10vh;
   text-align: center;
 }
 
@@ -110,5 +110,37 @@
     border-radius: 17px;
     outline: none;
     padding-left: 1.5rem;
+  }
+  .comment-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .btn-info {
+    margin: 0;
+  }
+  .panel-body textarea {
+    height: 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    border-bottom: 3px solid rgb(42, 204, 50);
+  }
+
+  .panel-body textarea:focus {
+    box-shadow: none;
+  }
+
+  .comment-details {
+    margin: 1rem 0;
+  }
+
+  .comment-heading {
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  .comment-description {
+    font-size: 0.9rem;
   }
 }
