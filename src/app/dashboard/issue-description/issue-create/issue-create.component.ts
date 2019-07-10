@@ -9,8 +9,8 @@ import { CKEditorComponent } from "ng2-ckeditor";
 import { Location } from "@angular/common";
 import { ToastrService } from "ngx-toastr";
 import { Cookie } from "ng2-cookies";
-import { IssueService } from "src/app/issue.service";
-import { AppService } from "src/app/app.service";
+import { IssueService } from "src/services/issue.service";
+import { AppService } from "src/services/app.service";
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({

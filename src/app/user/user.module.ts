@@ -7,7 +7,7 @@ import { SignupComponent } from "./signup/signup.component";
 import { LoginComponent } from "./login/login.component";
 import { RouterModule } from "@angular/router";
 
-import { AuthGuard } from "../auth.guard";
+import { AuthGuard } from "../../services/auth.guard";
 
 @NgModule({
   declarations: [SignupComponent, LoginComponent],

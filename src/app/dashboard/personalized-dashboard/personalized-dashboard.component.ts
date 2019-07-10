@@ -1,10 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { Cookie } from "ng2-cookies";
-import { AppService } from "src/app/app.service";
+import { AppService } from "src/services/app.service";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
-import { IssueService } from "src/app/issue.service";
-import { SocketService } from "src/app/socket.service";
+import { IssueService } from "src/services/issue.service";
+import { SocketService } from "src/services/socket.service";
 
 declare var $: any;
 

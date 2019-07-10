@@ -3,8 +3,7 @@ import { CommonModule } from "@angular/common";
 import { UserDetailsComponent } from "./user-details/user-details.component";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-
-import { AuthGuard } from "../auth.guard";
+import { AuthGuard } from "../../services/auth.guard";
 
 @NgModule({
   declarations: [UserDetailsComponent],

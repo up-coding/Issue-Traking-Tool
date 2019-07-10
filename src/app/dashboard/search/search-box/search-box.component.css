@@ -1,0 +1,32 @@
+.search-details {
+  width: 90%;
+  margin: 2rem auto;
+}
+
+.search-details__heading {
+  font-size: 1rem;
+}
+
+.search-details__table {
+  margin: 0.5rem 0;
+}
+
+@media screen and (max-width: 40rem) {
+  .heading {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+
+  .table-container {
+    width: 100%;
+  }
+  .table-container table {
+    width: 100%;
+  }
+  table.dataTable thead th,
+  table.dataTable thead td {
+    padding: 7px 13px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #111111;
+  }
+}

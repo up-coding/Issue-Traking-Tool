@@ -1,11 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { IssueService } from "src/app/issue.service";
-import { AppService } from "src/app/app.service";
+import { IssueService } from "src/services/issue.service";
+import { AppService } from "src/services/app.service";
 import { ToastrService } from "ngx-toastr";
 import { Location } from "@angular/common";
 import { Cookie } from "ng2-cookies";
-import { SocketService } from "src/app/socket.service";
+import { SocketService } from "src/services/socket.service";
 
 @Component({
   selector: "app-issue-view",
