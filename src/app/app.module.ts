@@ -12,11 +12,15 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppService } from "../services/app.service";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { AuthGuard } from "../services/auth.guard";
-import { IssueDescriptionModule } from "./dashboard/issue-description/issue-description.module";
-import { SearchModule } from "./dashboard/search/search.module";
+import { PageNotFoundComponent } from "./error/page-not-found/page-not-found.component";
+import { InternalServerErrorComponent } from "./error/internal-server-error/internal-server-error.component";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent,
+    InternalServerErrorComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -27,9 +31,7 @@ import { SearchModule } from "./dashboard/search/search.module";
     FormsModule,
     Ng2SearchPipeModule,
     ToastrModule.forRoot(),
-    IssueDescriptionModule,
     DashboardModule,
-    SearchModule,
     UserModule
   ],
   providers: [AppService, AuthGuard],

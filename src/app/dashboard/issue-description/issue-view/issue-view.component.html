@@ -47,10 +47,11 @@
           ></div>
           <hr />
           <div *ngIf="currentIssue">
-            <button
+            <!-- <button
               class="btn btn-edit"
               [routerLink]="['/issue-edit', currentIssue?.issueId]"
-            >
+            > -->
+            <button>
               Edit
             </button>
             <button class="btn btn-back" (click)="goBackToPreviousPage()">

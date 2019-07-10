@@ -52,7 +52,8 @@
               </thead>
               <tbody *ngFor="let issue of newList">
                 <tr>
-                  <a [routerLink]="['/issue-view', issue.issueId]">
+                  <!-- <a [routerLink]="['/issue-view', issue.issueId]"> -->
+                  <a>
                     <td>{{ issue?.status }}</td>
                   </a>
                   <td>{{ issue?.title }}</td>

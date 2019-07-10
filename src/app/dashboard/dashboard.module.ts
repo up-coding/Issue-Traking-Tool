@@ -10,6 +10,9 @@ import { RootComponent } from "./root/root.component";
 import { IssueCreateComponent } from "./issue-description/issue-create/issue-create.component";
 import { IssueEditComponent } from "./issue-description/issue-edit/issue-edit.component";
 import { IssueViewComponent } from "./issue-description/issue-view/issue-view.component";
+import { SearchBoxComponent } from "./search-box/search-box.component";
+import { CKEditorModule } from "ng2-ckeditor";
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { IssueViewComponent } from "./issue-description/issue-view/issue-view.co
     RootComponent,
     IssueCreateComponent,
     IssueEditComponent,
-    IssueViewComponent
+    IssueViewComponent,
+    SearchBoxComponent
   ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    CKEditorModule,
+    Ng2SearchPipeModule,
     SharedModule,
     FormsModule
   ],
