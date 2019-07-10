@@ -15,8 +15,7 @@ import { AuthGuard } from "../../services/auth.guard";
     CommonModule,
     BrowserAnimationsModule,
     FormsModule,
-    ToastrModule.forRoot(),
-    RouterModule.forChild([{ path: "signup", component: SignupComponent }])
+    ToastrModule.forRoot()
   ],
   providers: [AuthGuard]
 })
